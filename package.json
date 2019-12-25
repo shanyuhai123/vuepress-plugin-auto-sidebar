@@ -1,0 +1,9 @@
+{
+  "name": "vuepress-plugin-auto-sidebar",
+  "version": "0.0.1",
+  "description": "A vuepress plugin for generate sidebar",
+  "keywords": ["vuepress", "auto-sidebar", "sidebar"],
+  "main": "index.js",
+  "author": "shanyuhai123",
+  "license": "MIT"
+}
