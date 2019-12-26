@@ -2,7 +2,7 @@
 
 ## 介绍（Introduction）
 
-这是为 vuepress 自动生成侧边栏的插件。
+这是为 vuepress 自动生成侧边栏的插件，录了个简单的说明 :tv: [视频](https://www.bilibili.com/video/av80763432/)。
 
 
 
