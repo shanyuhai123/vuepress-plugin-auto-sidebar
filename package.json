@@ -1,9 +1,27 @@
 {
   "name": "vuepress-plugin-auto-sidebar",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A vuepress plugin for generate sidebar",
-  "keywords": ["vuepress", "auto-sidebar", "sidebar"],
+  "keywords": [
+    "vuepress",
+    "auto-sidebar",
+    "sidebar"
+  ],
   "main": "index.js",
   "author": "shanyuhai123",
-  "license": "MIT"
+  "license": "MIT",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar/issues"
+  },
+  "homepage": "https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar#readme"
 }
