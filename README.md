@@ -55,11 +55,15 @@
 
 
 
+
+
 ## 安装（Install）
 
 ```bash
 npm i vuepress-plugin-auto-sidebar -D
 ```
+
+
 
 
 
@@ -83,11 +87,101 @@ module.exports = {
 
 
 
+
+
 ## 可选项（Optional）
 
-| 属性名称（key） | 类型（type） | 预设值（default） | 说明（description）              |
-| :-------------- | :----------: | :---------------: | :------------------------------- |
-| mode            |    String    |      default      | 可选的模式，当前仅支持 default。 |
+| 属性名称（key） | 类型（type） | 预设值（default） | 说明（description）                                          |
+| :-------------- | :----------: | :---------------: | :----------------------------------------------------------- |
+| mode            |    String    |      default      | 可选的模式，当前仅支持 default。                             |
+| titleMode       |    String    |      default      | 标题（分组）模式，可选参数为 `default`、`lowercase`、`uppercase`、`capitalize`、`camelcase`、`kebabcase`、`titlecase`。 |
+| titleMap        |    Object    |                   | 标题映射，可与 `titleMode` 参数同时使用，且其优先度更高。    |
+
+### 1. titleMode 说明
+
+示例目录（Demo directory）：
+
+```bash
+docs
+├── exampleMenu1
+│   ├── exampleSubMenu1-a
+│   │   └── file1.md
+│   ├── exampleSubMenu1-b
+│   │   └── file1.md
+│   └── exampleSubMenu1-c
+│       ├── file1.md
+│       ├── file2.md
+│       └── file3.md
+├── exampleMenu2
+│   ├── file1.md
+│   └── README.md
+```
+
+分别得到的分组标题结果：
+
+1. `default` ：
+
+   ```bash
+   exampleSubMenu1-a # exampleSubMenu1-a
+   exampleSubMenu1-b # exampleSubMenu1-b
+   exampleSubMenu1-c # exampleSubMenu1-c
+   exampleMenu2 # exampleMenu2
+   ```
+
+2. `uppercase`：
+
+   ```bash
+   exampleSubMenu1-a # EXAMPLESUBMENU1-A
+   exampleSubMenu1-b # EXAMPLESUBMENU1-B
+   exampleSubMenu1-c # EXAMPLESUBMENU1-C
+   exampleMenu2 # EXAMPLEMENU2
+   ```
+
+3. `camelcase`：
+
+   ```bash
+   exampleSubMenu1-a # exampleSubMenu1A
+   exampleSubMenu1-b # exampleSubMenu1B
+   exampleSubMenu1-c # exampleSubMenu1C
+   exampleMenu2 # exampleMenu2
+   ```
+
+4. `titlecase`：
+
+   ```bash
+   exampleSubMenu1-a # Example Sub Menu1 A
+   exampleSubMenu1-b # Example Sub Menu1 B
+   exampleSubMenu1-c # Example Sub Menu1 C
+   exampleMenu2 # Example Menu2
+   ```
+
+### 2. titleMap 说明
+
+同样使用上述示例，配置 plugins：
+
+```js
+module.exports = {
+  plugins: [
+    "vuepress-plugin-auto-sidebar": {
+    	titleMap： {
+    		"exampleSubMenu1-a": "🎉 Hello Vuepress 🎉",
+    		"exampleSubMenu1-c": "🎉 Auto Sidebar 🎉"
+    	}
+    }
+  ],
+}
+```
+
+得到结果：
+
+```bash
+exampleSubMenu1-a # 🎉 Hello Vuepress 🎉
+exampleSubMenu1-b # exampleSubMenu1-b
+exampleSubMenu1-c # 🎉 Auto Sidebar 🎉
+exampleMenu2 # exampleMenu2
+```
+
+
 
 
 
