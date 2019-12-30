@@ -94,6 +94,7 @@ module.exports = {
 | 属性名称（key） | 类型（type） | 预设值（default） | 说明（description）                                          |
 | :-------------- | :----------: | :---------------: | :----------------------------------------------------------- |
 | mode            |    String    |      default      | 可选的模式，当前仅支持 default。                             |
+| sort            |    String    |        asc        | 排序，`asc` 为升序，其他如 `desc` 为降序。                   |
 | titleMode       |    String    |      default      | 标题（分组）模式，可选参数为 `default`、`lowercase`、`uppercase`、`capitalize`、`camelcase`、`kebabcase`、`titlecase`。 |
 | titleMap        |    Object    |                   | 标题映射，可与 `titleMode` 参数同时使用，且其优先度更高。    |
 

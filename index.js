@@ -1,4 +1,4 @@
-const { filterRootMarkdowns, filterDepthOneMarkdowns, filterDepthTwoMarkdowns, addDepthOne, addDepthTwo, genSidebar, genRoute, formatTitle } = require("./lib/utils");
+const { filterRootMarkdowns, filterDepthOneMarkdowns, filterDepthTwoMarkdowns, addDepthOne, addDepthTwo, genSidebar, genRoute, formatTitle, titleSortBy } = require("./lib/utils");
 const sidebarOptions = require("./lib/options");
 
 let SIDEBAR = Object.create(null);
@@ -24,6 +24,8 @@ module.exports = (options, ctx) => ({
       depthTwoPages.forEach(group => group.children.reduce((acc, cur) => (acc[genRoute(group.name, cur.name)] = genSidebar(formatTitle(cur.name, mergeOptions.titleMode, mergeOptions.titleMap), cur.children), acc), depthTwoPagesSidebar));
 
       SIDEBAR = Object.assign({}, depthOnePagesSidebar, depthTwoPagesSidebar);
+      // 丑陋的实现排序
+      titleSortBy(SIDEBAR, attr => attr[0].children, mergeOptions.sort);
     } catch (ex) {
       console.log(ex);
     }
