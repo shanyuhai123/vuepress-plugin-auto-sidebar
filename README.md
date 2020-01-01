@@ -74,11 +74,11 @@ npm i vuepress-plugin-auto-sidebar -D
 
 module.exports = {
   // 引入插件（import plugins）
-  plugins: [
+  plugins: {
     // 更多方式可参考（more use methods can refer to the documentation）:
     // https://v1.vuepress.vuejs.org/zh/plugin/using-a-plugin.html
     "vuepress-plugin-auto-sidebar": {} // 可参考下方的 “可选项”
-  ],
+  },
   themeConfig: {
   	// 无需配置 sidebar（no need to configure sidebar）
   }
