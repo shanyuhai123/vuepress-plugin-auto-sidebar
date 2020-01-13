@@ -6,48 +6,26 @@
 
 
 
-### 1. 注意事项（Danger）
+### 1. 目录结构示例
 
-若想要使用该插件，需要固定 docs 下路径。
-
-1. 正确的示例：
-
-   ```bash
-   docs
-   ├── exampleMenu1 # 两层目录（最大支持两层）
-   │   ├── exampleSubMenu1-1
-   │   │   └── file1.md
-   │   ├── exampleSubMenu1-2
-   │   │   └── file1.md
-   │   └── exampleSubMenu1-2
-   │       ├── file1.md
-   │       ├── file2.md
-   │       └── file3.md
-   ├── exampleMenu2 # 单层目录
-   │   ├── file1.md
-   │   └── README.md
-   ```
-
-2. 错误的示例：
-
-   ```bash
-   docs
-   ├── os # 两层目录下混合文件
-   │   ├── exampleSubMenu1-1
-   │   │   └── file1.md
-   │   ├── exampleSubMenu1-2
-   │   │   └── ignoreSubMenu1-2-1 # 超过两级的将会被忽略
-   │   │       └── file1.md
-   │   └── exampleSubMenu1-2
-   │   │   ├── file1.md
-   │   │   ├── file2.md
-   │   │   └── file3.md
-   │   └── ignoreFile.md # 它将会被忽略
-   ```
-
-更多说明参见下方的提问。
-
-
+```bash
+docs
+├── exampleMenu1
+│   ├── exampleSubMenu1-1
+│   │   └── file1.md
+│   ├── exampleSubMenu1-2
+│   │   └── exampleSubMenu1-2-1
+|   |       └── file1.md
+│   └── exampleSubMenu1-2
+│   |   ├── file1.md
+│   |   ├── file2.md
+│   |   └── file3.md
+|   ├── file1-1.md
+|   └── README.md
+├── exampleMenu2
+│   ├── file1.md
+│   └── README.md
+```
 
 ### 2. 在线示例
 
@@ -71,7 +49,7 @@ npm i vuepress-plugin-auto-sidebar -D
 
 ### 1. 无注释
 
-有部分小伙伴跟我说注释后显得太乱，那就简单点。
+有部分使用者跟我说注释后显得太乱，那就简单点。
 
 ```js
 module.exports = {
@@ -111,12 +89,21 @@ module.exports = {
 
 | 属性名称（key） | 类型（type） | 预设值（default） | 说明（description）                                          |
 | :-------------- | :----------: | :---------------: | :----------------------------------------------------------- |
-| mode            |    String    |      default      | 可选的模式，当前仅支持 default。                             |
-| sort            |    String    |        asc        | 排序，`asc` 为升序，其他如 `desc` 为降序。                   |
+| sort            |    String    |        asc        | 排序，`asc` 为升序，其他如 `desc` 为降序，更精准的排序见下方。 |
 | titleMode       |    String    |      default      | 标题（分组）模式，可选参数为 `default`、`lowercase`、`uppercase`、`capitalize`、`camelcase`、`kebabcase`、`titlecase`。 |
 | titleMap        |    Object    |                   | 标题映射，可与 `titleMode` 参数同时使用，且其优先度更高。    |
 
-### 1. titleMode 说明
+### 1. sort
+
+`asc` 和 `desc` 只能根据文件名称 `ASCII` 码进行排序。更精准的排序需要在文件中添加 `autoPrev` 或 `autoNext` 并指定**同目录下**的文件名，需要注意的是，错误的文件名会导致侧边栏不显示该文件。
+
+```yaml
+---
+autoPrev: fileNameXX
+---
+```
+
+### 2. titleMode 说明
 
 示例目录（Demo directory）：
 
@@ -174,7 +161,7 @@ docs
    exampleMenu2 # Example Menu2
    ```
 
-### 2. titleMap 说明
+### 3. titleMap 说明
 
 同样使用上述示例，配置 plugins：
 
@@ -182,7 +169,7 @@ docs
 module.exports = {
   plugins: [
     "vuepress-plugin-auto-sidebar": {
-    	titleMap： {
+    	titleMap: {
     		"exampleSubMenu1-a": "🎉 Hello Vuepress 🎉",
     		"exampleSubMenu1-c": "🎉 Auto Sidebar 🎉"
     	}
@@ -208,25 +195,30 @@ exampleMenu2 # exampleMenu2
 
 ### 1. 它的作用是自动生成侧边栏吗？
 
-不，它**并不是**一个自动生成侧边栏的插件，**仅仅可以帮助你对同一目录下的文件进行分组。**(早期我错误的以为它是自动生成侧边栏的工具 :cry:)
+不，它**并不是**一个自动生成侧边栏的插件，**仅仅可以帮助你对同一目录下的文件进行分组。**
 
-### 2. 为什么只支持两级目录，后期考虑增加吗？
+### 2. 当输入 `/exampleSubMenu1-a/` 路径之类时显示 404。
 
-在写的时候认为两级目录已经完全够用于分类，后期考虑增加。
+这是由于你在该目录下缺乏 `README.md` 文件，在 [vuepress](https://v1.vuepress.vuejs.org/zh/guide/directory-structure.html#%E9%BB%98%E8%AE%A4%E7%9A%84%E9%A1%B5%E9%9D%A2%E8%B7%AF%E7%94%B1) 提及了原因。
 
-### 3. 为什么二级目录时，文件和目录不能在同一层级？
+### 3. 我生成侧边栏后左侧显示的是文件路径，而非文件名。
 
-参见提问一，它仅仅能够帮助你整理统一目录下的文件，目录不属于文件。
+这是由于你的 `md` 缺乏标题，你可以选择：
 
-### 4. 我生成侧边栏后左侧显示的是文件路径，而非文件名。
+1. 在 `md` 文件头部增加 `title` 属性，或[更多格式](https://v1.vuepress.vuejs.org/zh/guide/frontmatter.html#%E5%85%B6%E4%BB%96%E6%A0%BC%E5%BC%8F%E7%9A%84-front-matter)。
 
-这一部分需要你手动在 `md` 文件头部增加 `title` 属性，示例：
+   ```yaml
+   ---
+   title: 标题
+   ---
+   ```
 
-```yaml
----
-title: 标题
----
-```
+2. 当然你也可以添加 `markdown` 语法中的 `#`、`##`、`###` 标题符号。
 
-当然你也可以添加 `markdown` 语法中的 `#`、`##`、`###` 标题符号。
+   ```markdown
+   # 标题
+   这是内容。
+   ```
+
+   
 

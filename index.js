@@ -1,4 +1,4 @@
-const { filterRootMarkdowns, filterDepthOneMarkdowns, filterDepthTwoMarkdowns, addDepthOne, addDepthTwo, genSidebar, genRoute, formatTitle, titleSortBy } = require("./lib/utils");
+const { getMenuPath, getFilename, filterRootMarkdowns, groupBy, genSidebar, titleSort, sidebarSort, findGroupIndex } = require("./lib/utils");
 const sidebarOptions = require("./lib/options");
 
 let SIDEBAR = Object.create(null);
@@ -10,24 +10,39 @@ module.exports = (options, ctx) => ({
       const mergeOptions = Object.assign({}, sidebarOptions, options);
       const { pages } = ctx;
 
-      // 简化 pages 数据
+      // 整理 pages 数据
       const mapPages = pages.map(page => ({
-        path: page.path,
-        split: page.path.split("/").slice(1)  // 移除多余的空格
+        frontmatter: page.frontmatter,
+        menuPath: getMenuPath(page.relativePath),
+        filename: getFilename(page.relativePath)
       })).filter(filterRootMarkdowns);
 
-      const depthOnePages = addDepthOne(mapPages.filter(filterDepthOneMarkdowns));
-      const depthTwoPages = addDepthTwo(mapPages.filter(filterDepthTwoMarkdowns));
+      // 过滤出待排序的
+      const sortQueue = mapPages.filter(page => page.frontmatter.autoPrev || page.frontmatter.autoNext);
+      const defaultPages = mapPages.filter(page => !page.frontmatter.autoPrev && !page.frontmatter.autoNext);
 
-      let depthTwoPagesSidebar = Object.create(null);
-      const depthOnePagesSidebar = depthOnePages.reduce((acc, cur) => (acc[genRoute(cur.name)] = genSidebar(formatTitle(cur.name, mergeOptions.titleMode, mergeOptions.titleMap), cur.children), acc), {});
-      depthTwoPages.forEach(group => group.children.reduce((acc, cur) => (acc[genRoute(group.name, cur.name)] = genSidebar(formatTitle(cur.name, mergeOptions.titleMode, mergeOptions.titleMap), cur.children), acc), depthTwoPagesSidebar));
+      const groupByDepth = groupBy(defaultPages, "menuPath");
 
-      SIDEBAR = Object.assign({}, depthOnePagesSidebar, depthTwoPagesSidebar);
-      // 丑陋的实现排序
-      titleSortBy(SIDEBAR, attr => attr[0].children, mergeOptions.sort);
+      titleSort(groupByDepth, "filename", mergeOptions.sort);
+      let sortQueueCache = [];
+      while (sortQueue.length) {
+        const current = sortQueue.pop();
+        const index = findGroupIndex(current, groupByDepth);
+
+        if (index !== -1) {
+          current.frontmatter.autoPrev ?
+            groupByDepth[current.menuPath].splice(index + 1, 0, current) :
+            groupByDepth[current.menuPath].splice(index, 0, current)
+
+          sortQueue.concat(sortQueueCache);
+        } else {
+          sortQueueCache.push(current);
+        }
+      }
+
+      SIDEBAR = genSidebar(sidebarSort(groupByDepth), mergeOptions);
     } catch (ex) {
-      console.log(ex);
+      console.error(ex);
     }
   },
   async enhanceAppFiles() {
