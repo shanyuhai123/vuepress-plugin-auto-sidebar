@@ -63,7 +63,7 @@ module.exports = {
 
 ### 2. 注释
 
-与上方一致，仅仅是添加了使用说明。
+与上方一致，仅仅是添加了注释。
 
 ```js
 // 修改 docs/.vuepress/config.js
@@ -201,7 +201,7 @@ exampleMenu2 # exampleMenu2
 
 这是由于你在该目录下缺乏 `README.md` 文件，在 [vuepress](https://v1.vuepress.vuejs.org/zh/guide/directory-structure.html#%E9%BB%98%E8%AE%A4%E7%9A%84%E9%A1%B5%E9%9D%A2%E8%B7%AF%E7%94%B1) 提及了原因。
 
-### 3. 我生成侧边栏后左侧显示的是文件路径，而非文件名。
+### 3. 生成侧边栏后左侧显示的是文件路径，而非文件名。
 
 这是由于你的 `md` 缺乏标题，你可以选择：
 
@@ -220,5 +220,21 @@ exampleMenu2 # exampleMenu2
    这是内容。
    ```
 
-   
+
+### 4. 希望像 vuepress 官网那样侧边栏存在多个分组？
+
+需要在文件头添加分组标识：
+
+```yaml
+---
+autoGroup-1: 分组名称
+# autoGroup+10: 分组名称
+---
+```
+
+其中 `autoGroup` 为固定格式，不可更改。`-` 和 `+` 二者选其一，`-` 代表在默认分组的下方，数字越大越往下；`+` 代表在默认分组的上方，数字越大越往上。
+
+效果示例及[参考文件地址](https://github.com/shanyuhai123/documents/tree/master/docs/frontend/javascript)。
+
+![image-20200114004204016](assets/image-20200114004204016.png)
 
