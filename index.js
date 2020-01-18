@@ -1,4 +1,6 @@
-const { getMenuPath, getFilename, filterRootMarkdowns, groupBy, genSidebar, titleSort, sidebarSort, findGroupIndex } = require("./lib/utils");
+const fs = require('fs');
+const path = require('path');
+const { getMenuPath, getFilename, filterRootMarkdowns, groupBy, genSidebar, titleSort, sidebarSort, findGroupIndex, genNav } = require("./lib/utils");
 const sidebarOptions = require("./lib/options");
 
 let SIDEBAR = Object.create(null);
@@ -41,6 +43,13 @@ module.exports = (options, ctx) => ({
       }
 
       SIDEBAR = genSidebar(sidebarSort(groupByDepth), mergeOptions);
+
+      const nav = genNav(SIDEBAR);
+      const dest = path.join(ctx.sourceDir, ".vuepress/nav.js");
+
+      if (mergeOptions.nav && !fs.existsSync(dest)) {
+        await fs.writeFileSync(dest, `module.exports = ${JSON.stringify(nav)};`);
+      }
     } catch (ex) {
       console.error(ex);
     }

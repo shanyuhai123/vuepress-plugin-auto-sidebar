@@ -2,7 +2,7 @@
 
 ## 介绍（Introduction）
 
-这是为 vuepress 自动~~生成侧边栏~~**分组**的插件，录了个简单的说明 :tv: [视频](https://www.bilibili.com/video/av80763432/)。
+这是为 vuepress 自动~~生成侧边栏~~**分组**的插件。
 
 
 
@@ -20,8 +20,8 @@ docs
 │   |   ├── file1.md
 │   |   ├── file2.md
 │   |   └── file3.md
-|   ├── file1-1.md
-|   └── README.md
+|   ├── file1-1.md # 不推荐目录、文件同级
+|   └── README.md # 原因见 提问5
 ├── exampleMenu2
 │   ├── file1.md
 │   └── README.md
@@ -69,14 +69,14 @@ module.exports = {
 // 修改 docs/.vuepress/config.js
 
 module.exports = {
-  // 引入插件（import plugins）
+  // 引入插件
   plugins: {
-    // 更多方式可参考（more use methods can refer to the documentation）:
+    // 更多方式可参考:
     // https://v1.vuepress.vuejs.org/zh/plugin/using-a-plugin.html
     "vuepress-plugin-auto-sidebar": {} // 可参考下方的 “可选项”
   },
   themeConfig: {
-  	// 无需配置 sidebar（no need to configure sidebar）
+  	// 无需配置
   }
 }
 ```
@@ -92,6 +92,7 @@ module.exports = {
 | sort            |    String    |        asc        | 排序，`asc` 为升序，其他如 `desc` 为降序，更精准的排序见下方。 |
 | titleMode       |    String    |      default      | 标题（分组）模式，可选参数为 `default`、`lowercase`、`uppercase`、`capitalize`、`camelcase`、`kebabcase`、`titlecase`。 |
 | titleMap        |    Object    |                   | 标题映射，可与 `titleMode` 参数同时使用，且其优先度更高。    |
+| nav             |   Boolean    |       false       | 生成 nav 简易模板。                                          |
 
 ### 1. sort
 
@@ -187,6 +188,25 @@ exampleSubMenu1-c # 🎉 Auto Sidebar 🎉
 exampleMenu2 # exampleMenu2
 ```
 
+### 4. nav
+
+在执行 `npm run docs:dev` 后生成  `.vuepress/nav.js` 文件，接着在 `.vuepress/config.js` 引入：
+
+```js
+// .vuepress/config.js
+const nav = require("./nav.js");
+
+module.exports = {
+  themeConfig: {
+    nav // ES6 简写
+  },
+}
+```
+
+然后再次执行 `npm run docs:dev` 即可看到导航栏。
+
+当 `.vuepress/nav.js` 已存在时将不会重复生成覆盖，一般推荐第一次生成导航栏时使用，因为这只会生成一个简易模板，更个性化建议修改它，[可参考](https://v1.vuepress.vuejs.org/zh/theme/default-theme-config.html#%E5%AF%BC%E8%88%AA%E6%A0%8F)。
+
 
 
 
@@ -238,3 +258,25 @@ autoGroup-1: 分组名称
 
 ![image-20200114004204016](assets/image-20200114004204016.png)
 
+### 5. 为什么不推荐目录、文件同级存在？
+
+因为当同时存在时会导致如下图问题，这是由于 `vuepress` 默认主题导致的。
+
+![image-20200118012857853](assets/image-20200118012857853.png)
+
+如果你的 `vuepress` 文档不考虑支持多语言，那么你可以考虑直接修改 `vuepress` 的文件。
+
+```vue
+<-- node_modules/@vuepress/theme-default/components/NavLink.vue -->
+<RouterLink
+  v-if="isInternal"
+  class="nav-link"
+  :to="link"
+  exact
+  @focusout.native="focusoutAction"
+>
+  {{ item.text }}
+</RouterLink>
+```
+
+不过并不推荐这样去修改，因为当使用自动化部署重新拉取 `vuepress` 时会导致其被覆盖。
