@@ -13,7 +13,7 @@ module.exports = (options, ctx) => ({
       const { pages } = ctx;
 
       // 整理 pages 数据
-      const mapPages = pages.map(page => ({
+      const mapPages = pages.filter(page => page.relativePath).map(page => ({
         frontmatter: page.frontmatter,
         menuPath: getMenuPath(page.relativePath),
         filename: getFilename(page.relativePath)
