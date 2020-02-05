@@ -68,7 +68,7 @@ describe('sidebar sort', () => {
       '/exampleMenu1/exampleSubMenu1-2/': [
         {
           menuPath: '/exampleMenu1/exampleSubMenu1-2/',
-          filename: '11-README'
+          filename: '01-file2'
         },
         {
           menuPath: '/exampleMenu1/exampleSubMenu1-2/',
@@ -76,7 +76,7 @@ describe('sidebar sort', () => {
         },
         {
           menuPath: '/exampleMenu1/exampleSubMenu1-2/',
-          filename: '01-file2'
+          filename: '11-README'
         }
       ]
     };
