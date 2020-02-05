@@ -87,22 +87,42 @@ module.exports = {
 
 ## 可选项（Optional）
 
-| 属性名称（key） | 类型（type） | 预设值（default） | 说明（description）                                          |
-| :-------------- | :----------: | :---------------: | :----------------------------------------------------------- |
-| sort            |    String    |        asc        | 排序，`asc` 为升序，其他如 `desc` 为降序，更精准的排序见下方。 |
-| titleMode       |    String    |      default      | 标题（分组）模式，可选参数为 `default`、`lowercase`、`uppercase`、`capitalize`、`camelcase`、`kebabcase`、`titlecase`。 |
-| titleMap        |    Object    |                   | 标题映射，可与 `titleMode` 参数同时使用，且其优先度更高。    |
-| nav             |   Boolean    |       false       | 生成 nav 简易模板。                                          |
+| 属性名称（key） |  类型（type）   | 预设值（default） | 说明（description）                                          |
+| :-------------- | :-------------: | :---------------: | :----------------------------------------------------------- |
+| sort            | String,Function |        asc        | 排序，`asc` 为升序，其他如 `desc` 为降序，更多的排序规则见下方。 |
+| titleMode       |     String      |      default      | 标题（分组）模式，可选参数为 `default`、`lowercase`、`uppercase`、`capitalize`、`camelcase`、`kebabcase`、`titlecase`。 |
+| titleMap        |     Object      |                   | 标题映射，可与 `titleMode` 参数同时使用，且其优先度更高。    |
+| nav             |     Boolean     |       false       | 生成 nav 简易模板。                                          |
 
 ### 1. sort
 
-`asc` 和 `desc` 只能根据文件名称 `ASCII` 码进行排序。更精准的排序需要在文件中添加 `autoPrev` 或 `autoNext` 并指定**同目录下**的文件名，需要注意的是，错误的文件名会导致侧边栏不显示该文件。
++ 自定义排序规则：
 
-```yaml
----
-autoPrev: fileNameXX
----
-```
+  目前仅提供了针对 ASCII 的 `asc` 和 `desc`，如果需要定制需配置：
+
+  ```js
+  // 示例：根据文件名的最后一个字符进行排序
+  // 相对于普通的 sort 函数，该函数需要通过高阶函数指定 key
+  const sortFn = key => (a, b) => a[key].split("-")[1][length - 1] > b[key].split("-")[1][length - 1] ? 1 : -1;
+  
+  module.exports = {
+  	plugins: {
+      "vuepress-plugin-auto-sidebar": {
+        sort: sortFn,
+      }
+    },
+  }
+  ```
+
++ 精准排序：
+
+  更精准的排序需要在文件中添加 `autoPrev` 或 `autoNext` 并指定**同目录下**的文件名，需要注意的是，错误的文件名会导致侧边栏不显示该文件，[在线示例](https://github.com/shanyuhai123/documents/blame/master/docs/os/linux/everything-is-a-file.md#L3)。
+
+  ```yaml
+  ---
+  autoPrev: fileNameXX
+  ---
+  ```
 
 ### 2. titleMode 说明
 

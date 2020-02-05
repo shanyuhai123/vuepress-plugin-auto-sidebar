@@ -14,7 +14,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watchAll --verbose"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar/issues"
   },
-  "homepage": "https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar#readme"
+  "homepage": "https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar#readme",
+  "devDependencies": {
+    "jest": "^25.1.0"
+  }
 }

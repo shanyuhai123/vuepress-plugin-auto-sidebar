@@ -25,7 +25,7 @@ module.exports = (options, ctx) => ({
 
       const groupByDepth = groupBy(defaultPages, "menuPath");
 
-      titleSort(groupByDepth, "filename", mergeOptions.sort);
+      titleSort(groupByDepth, mergeOptions.sort);
       let sortQueueCache = [];
       while (sortQueue.length) {
         const current = sortQueue.pop();
