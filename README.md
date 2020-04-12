@@ -16,6 +16,8 @@ npm i vuepress-plugin-auto-sidebar -D
 
 ## 使用（Usage）
 
+> **注意请勿将 plugins 放在 themeConfig 中**，如何[使用插件](https://vuepress.vuejs.org/zh/plugin/using-a-plugin.html)。
+
 ```js
 module.exports = {
   plugins: {
