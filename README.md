@@ -26,8 +26,4 @@ module.exports = {
 }
 ```
 
-更详细的文档见 [vuepress 自动生成侧边栏](https://shanyuhai123.github.io/vuepress-plugin-auto-sidebar)。
-
-
-
-> 若访问 `github.io` 存在问题，可尝试 [修改 hosts](https://docs.shanyuhai.top/tools/github/config-github-hosts.html)。
+:book: **更详细的文档见 [vuepress 自动生成侧边栏](https://shanyuhai123.github.io/vuepress-plugin-auto-sidebar)。**
