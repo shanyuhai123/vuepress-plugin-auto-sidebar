@@ -36,7 +36,8 @@ module.exports = (options, ctx) => ({
             groupByDepth[current.menuPath].splice(index + 1, 0, current) :
             groupByDepth[current.menuPath].splice(index, 0, current)
 
-          sortQueue.concat(sortQueueCache);
+          sortQueue.push(...sortQueueCache);
+          sortQueueCache = [];
         } else {
           sortQueueCache.push(current);
         }
