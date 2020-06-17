@@ -26,5 +26,8 @@
   "homepage": "https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar#readme",
   "devDependencies": {
     "jest": "^25.1.0"
+  },
+  "dependencies": {
+    "colors": "^1.4.0"
   }
 }

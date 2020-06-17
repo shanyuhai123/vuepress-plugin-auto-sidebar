@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+
+const colors = require("colors/safe");
 const { getMenuPath, getFilename, filterRootMarkdowns, groupBy, genSidebar, titleSort, sidebarSort, findGroupIndex, genNav } = require("./lib/utils");
 const sidebarOptions = require("./lib/options");
 
@@ -41,6 +43,10 @@ module.exports = (options, ctx) => ({
         } else {
           sortQueueCache.push(current);
         }
+      }
+
+      if (sortQueueCache.length) {
+        console.log(colors.red("\nvuepress plugin auto sidebar(精准排序): "), `\n  [${colors.green(sortQueueCache.map(q => `${q.filename}(${q.frontmatter.title})`).join("、"))}] \t共 ${sortQueueCache.length} 个文件指向了不存在的 prev 或 next`);
       }
 
       SIDEBAR = genSidebar(sidebarSort(groupByDepth), mergeOptions);
