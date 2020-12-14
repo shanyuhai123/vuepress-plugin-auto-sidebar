@@ -1,4 +1,4 @@
-const { titleSort } = require("../lib/utils");
+const { titleSort } = require('../lib/utils')
 
 const sidebars = {
   '/exampleMenu1/exampleSubMenu1-2/': [
@@ -15,7 +15,7 @@ const sidebars = {
       filename: '09-file3'
     }
   ]
-};
+}
 
 describe('sidebar sort', () => {
   it('should get ASCII ascending order', () => {
@@ -34,11 +34,11 @@ describe('sidebar sort', () => {
           filename: '11-README'
         }
       ]
-    };
+    }
 
-    titleSort(sidebars, "asc"); // sort
-    expect(sidebars).toEqual(asc);
-  });
+    titleSort(sidebars, 'asc') // sort
+    expect(sidebars).toEqual(asc)
+  })
 
   it('should get ASCII descending order', () => {
     const desc = {
@@ -56,14 +56,14 @@ describe('sidebar sort', () => {
           filename: '01-file2'
         }
       ]
-    };
+    }
 
-    titleSort(sidebars, "desc"); // sort
-    expect(sidebars).toEqual(desc);
-  });
+    titleSort(sidebars, 'desc') // sort
+    expect(sidebars).toEqual(desc)
+  })
 
   it('should sort by custom rules', () => {
-    const fn = key => (a, b) => a[key].split("-")[1][length - 1] > b[key].split("-")[1][length - 1] ? 1 : -1;
+    const fn = key => (a, b) => a[key].split('-')[1][length - 1] > b[key].split('-')[1][length - 1] ? 1 : -1
     const fnResult = {
       '/exampleMenu1/exampleSubMenu1-2/': [
         {
@@ -79,9 +79,9 @@ describe('sidebar sort', () => {
           filename: '11-README'
         }
       ]
-    };
+    }
 
-    titleSort(sidebars, fn); // sort
-    expect(sidebars).toEqual(fnResult);
-  });
-});
+    titleSort(sidebars, fn) // sort
+    expect(sidebars).toEqual(fnResult)
+  })
+})
