@@ -3,7 +3,8 @@ import { AutoSidebarPluginOptions } from '../types'
 export const AutoSidebarOptionsDefault: AutoSidebarPluginOptions = {
   // 排序
   sort: {
-    mode: 'asc' // 排序模式
+    mode: 'asc', // 排序模式
+    readmeFirst: true // README 是否提到最前面
   },
   // 标题
   title: {

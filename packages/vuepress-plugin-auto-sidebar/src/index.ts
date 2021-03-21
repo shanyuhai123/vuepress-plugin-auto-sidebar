@@ -1,4 +1,6 @@
 import { Context } from 'vuepress-types'
+import merge from 'merge'
+import * as colors from 'colors/safe'
 import { existsSync, writeFileSync } from 'fs'
 import { join } from 'path'
 import { AutoSidebarOptionsDefault } from './config/options'
@@ -8,17 +10,11 @@ import { distinguishSpecifiedSortPages, groupPagesByMenuPath, handlePages } from
 import { genSidebar } from './utils/sidebar'
 import { pagesSort, pagesGroupSort, specifiedPagesSort } from './utils/sort'
 
-// TODO
-// 1. 扩展 cli 支持生成 nav [已完成，还需要判断是否覆盖之前内容]
-// 2. 考虑支持单页功能
-// 3. 支持将 README 设置为 first
-// 4. 隐藏 pages 功能
-
 const AutoSidebarPlugin = (
   options: AutoSidebarPluginOptions,
   ctx: Context
 ) => {
-  const MERGE_OPTIONS = Object.assign({}, AutoSidebarOptionsDefault, options)
+  const MERGE_OPTIONS = merge.recursive({}, AutoSidebarOptionsDefault, options)
   let AUTO_SIDEBAR_DATA = Object.create(null)
 
   return {
@@ -35,9 +31,9 @@ const AutoSidebarPlugin = (
 
       // 排序优先级
       // 1. 首先会根据 sort 参数进行排序（内置或自定义）
-      // 2. 再会根据 README first 确认是否提前，默认为提前
-      // 3. 将 specifiedSortPages 插入已排序的 defaultPagesGroupByMenuPath 中
-      pagesSort(defaultPagesGroupByMenuPath, { mode: 'asc' })
+      //    1.1 在内置规则下会判断 README 是否提前，默认为提前，而自定义规则时自行处理
+      // 2. 将 specifiedSortPages 插入已排序的 defaultPagesGroupByMenuPath 中
+      pagesSort(defaultPagesGroupByMenuPath, MERGE_OPTIONS.sort)
       specifiedPagesSort(defaultPagesGroupByMenuPath, specifiedSortPages)
 
       const sortedGroupPages = pagesGroupSort(defaultPagesGroupByMenuPath)
@@ -52,13 +48,18 @@ const AutoSidebarPlugin = (
     },
     extendCli (cli: any) {
       cli
-        .command('nav [targetDir]', '生成导航栏（generate navbar）')
-        .action(() => {
+        .command('nav [targetDir]', '生成导航栏（generate nav file）')
+        .option('-f, --force', '强制覆盖已存在的 nav 文件（Forcibly overwrite the existing nav file）')
+        .action((dir: string, options: any) => {
           const nav = genNav(AUTO_SIDEBAR_DATA)
           const dest = join(ctx.sourceDir, '.vuepress/nav.js')
 
-          if (!existsSync(dest)) {
+          if (options.force || !existsSync(dest)) {
             writeFileSync(dest, `module.exports = ${JSON.stringify(nav, null, 2)};`)
+
+            console.log(colors.green(`已在 ${dest} 生成 nav 配置文件`))
+          } else {
+            console.log(colors.red(`${dest} 已存在文件，可使用 vuepress nav ${dir} -f 覆盖配置文件`))
           }
         })
     }

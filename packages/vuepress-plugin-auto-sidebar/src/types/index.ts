@@ -36,6 +36,7 @@ type SIDEBAR_OPTIONS_TITLE =
 export interface SortOptions {
   mode?: SIDEBAR_OPTIONS_SORT
   fn?: ArraySortFn<AutoSidebarPage>
+  readmeFirst: boolean
   // sortKey: keyof AutoSidebarPage
 }
 

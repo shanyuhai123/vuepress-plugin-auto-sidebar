@@ -28,6 +28,16 @@ const builtInSortRules: BuiltInSortRules = {
   // 'date_desc':
 }
 
+// 将 README 提取到最前
+export const readmeFirstSort = (pages: AutoSidebarPage[]) => {
+  const index = pages.findIndex(page => page.filename === 'README')
+
+  if (index !== -1) {
+    const README = pages.splice(index, 1)
+    pages.unshift(...README)
+  }
+}
+
 // 对 defaultPages 的内容进行排序
 export const pagesSort = (pagesGroup: GroupPagesResult, sortOptions: SortOptions) =>
   Object.values(pagesGroup)
@@ -36,14 +46,25 @@ export const pagesSort = (pagesGroup: GroupPagesResult, sortOptions: SortOptions
 
       // 自定义排序
       if (mode === 'custom') {
+        console.log(fn)
+        if (!fn) {
+          throw Error('未传递自定义排序函数！')
+        }
+
         return pages.sort(fn)
       }
 
       // 内置排序规则
       if (!mode) {
-        return pages.sort(builtInSortRules.asc)
+        pages.sort(builtInSortRules.asc)
+      } else {
+        pages.sort(builtInSortRules[mode])
       }
-      pages.sort(builtInSortRules[mode])
+
+      // 判断是否将 README 提前
+      if (sortOptions.readmeFirst) {
+        readmeFirstSort(pages)
+      }
     })
 
 // 将 specifiedSortPages 插入已排序的 defaultPages 中

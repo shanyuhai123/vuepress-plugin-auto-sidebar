@@ -33,6 +33,7 @@
     "colors": "^1.4.0"
   },
   "devDependencies": {
+    "merge": "^2.1.1",
     "rimraf": "^3.0.2"
   }
 }

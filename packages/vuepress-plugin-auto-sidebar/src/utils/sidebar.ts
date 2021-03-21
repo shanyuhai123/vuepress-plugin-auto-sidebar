@@ -5,7 +5,7 @@ const DivideReg = /autoGroup([+-])(\d*)/
 const toDefaultCase = (str: string) => str
 const toLowerCase = (str: string) => str.toLowerCase()
 const toUpperCase = (str: string) => str.toUpperCase()
-const toCapitalize = (first: string, ...rest: string[]) =>
+const toCapitalize = ([first, ...rest]: string) =>
   first.toUpperCase() + rest.join('')
 const toCamelCase = (str: any) => {
   const s =
