@@ -1,0 +1,27 @@
+name: Deploy Vuepress Plugin Auto Sidebar
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Install and Build 🔧
+        run: |
+          git --no-pager log --oneline -n 20
+          lerna bootstrap
+          lerna run docs:build
+      - name: Deploy Github 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.PAGES_TOKEN }}
+          publish_dir: packages/vuepress-docs-gh-pages/docs/.vuepress/dist
+          cname: docs.shanyuhai.top
+          commit_message: ${{ github.event.head_commit.message }}
