@@ -17,7 +17,8 @@
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "lib",
+    "README-zh_CN.md"
   ],
   "repository": {
     "type": "git",
@@ -35,5 +36,6 @@
   "devDependencies": {
     "merge": "^2.1.1",
     "rimraf": "^3.0.2"
-  }
+  },
+  "gitHead": "a8a16e6995ecec66b280599b3e8597bad6ed1cd7"
 }
