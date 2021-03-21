@@ -1,7 +1,5 @@
 # Vuepress Plugin Auto Sidebar
 
-[![Build Status](https://travis-ci.com/shanyuhai123/vuepress-plugin-auto-sidebar.svg?branch=docs)](https://travis-ci.com/shanyuhai123/vuepress-plugin-auto-sidebar)
-
 ## 介绍（Introduction）
 
 这是为 vuepress 自动~~生成侧边栏~~**分组**的插件。
