@@ -9,17 +9,19 @@ module.exports = {
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
   ],
-  plugins: [
-    ["vuepress-plugin-auto-sidebar", {
-      // titleMode: "titlecase",
-    }],
-    ["@vuepress/last-updated", {
+  plugins: {
+    "vuepress-plugin-auto-sidebar": {
+      title: {
+        mode: "titlecase"
+      }
+    },
+    "@vuepress/last-updated": {
       transformer: (timestamp) => moment(timestamp).format('LLLL')
-    }],
-    ["@vuepress/google-analytics", {
+    },
+    "@vuepress/google-analytics": {
       ga: "UA-134613928-2"
-    }],
-  ],
+    }
+  },
   themeConfig: {
     lastUpdated: '上次更新',
     repo: 'shanyuhai123/vuepress-plugin-auto-sidebar',
