@@ -4,18 +4,51 @@ title: 插件的可选项
 
 ## 概览
 
-该插件提供了以下可选项：
+该插件提供了以下可选项，更详细的解释看下方：
 
-| 可选项（option） | 类型（type）    | 预设值（default） | 说明（description）                                          |
-| :--------------: | --------------- | :---------------: | ------------------------------------------------------------ |
-|       sort       | String,Function |        asc        | 排序，`asc` 为升序，其他如 `desc` 为降序，更多的排序规则见下方。 |
-|    titleMode     | String          |      default      | 标题模式，可选参数为 `default`、`lowercase`、`uppercase`、`capitalize`、`camelcase`、`kebabcase`、`titlecase`。 |
-|     titleMap     | Object          |                   | 标题映射，可与 `titleMode` 参数同时使用，且其优先度更高。    |
-|       nav        | Boolean         |       false       | 生成 nav 导航栏简易模板。                                    |
-|   sidebarDepth   | Number          |         1         | 标题的深度，vuepress 的官网有其[说明](https://v1.vuepress.vuejs.org/zh/theme/default-theme-config.html#%E5%B5%8C%E5%A5%97%E7%9A%84%E6%A0%87%E9%A2%98%E9%93%BE%E6%8E%A5)。 |
-|   collapsable    | Boolean         |       false       | 分组是否可以折叠                                             |
-|   collapseList   | Array           |        [ ]        | 折叠的路由列表                                               |
-|  uncollapseList  | Array           |        [ ]        | 不折叠的路由列表                                             |
+```js
+module.exports = {
+  plugins: {
+    // 插件
+    "vuepress-plugin-auto-sidebar": {
+      // 排序
+      sort: {
+        // 排序模式，默认为 `asc`
+        // 'asc' // 升序
+        // 'desc' // 降序
+        // 'custom' // 自定义
+        mode: "asc",
+        // 当排序模式为 custom 时需指定 fn
+        fn: () => {},
+        // 将 README.md 文件提到前面，默认为 true
+        readmeFirst: true,
+      },
+      // 标题
+      title: {
+        // 标题模式，默认为 default
+        // 可选 `default`、`lowercase`、`uppercase`、`capitalize`、`camelcase`、`kebabcase`、`titlecase`
+        mode: "titlecase",
+        // 指定文件夹映射，例如
+        map: {
+          "/menu1/menu1-2/": "我是标题",
+          "/menu2/menu2-2/": "我是分组标题"
+        }
+      },
+      // 标题深度
+      sidebarDepth: 1,
+      // 折叠
+      collapse: {
+        // 折叠还是打开，默认为打开
+        open: true,
+        // 选择要折叠的目录，例如
+        collapseList: ["/menu1/menu1-2/"],
+        // 选择要打开的目录，例如
+        uncollapseList: ["/menu1/menu1-3/"]
+      }
+    }
+  }
+}
+```
 
 
 
@@ -29,17 +62,20 @@ title: 插件的可选项
 
 ### 2. 自定义规则
 
-当内置的规则不满足你的需求时你可以自定义根据文件名的排序规则：
+当内置的规则不满足你的需求时你可以自定义根据文件名的排序规则，在 [AutoSidebarPage](https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar/blob/master/packages/vuepress-plugin-auto-sidebar/src/types/index.ts#L15) 可找到更多字段：
 
 ```js
 // 示例：根据文件名的最后一个字符进行排序
-// 相对于普通的 sort 函数，该函数需要通过高阶函数指定 key
-const sortFn = key => (a, b) => a[key].split("-")[1][length - 1] > b[key].split("-")[1][length - 1] ? 1 : -1;
+
+const sortFn = (a, b) => a.filename.split("-")[1][length - 1] > b.filename.split("-")[1][length - 1] ? 1 : -1;
 
 module.exports = {
 	plugins: {
     "vuepress-plugin-auto-sidebar": {
-      sort: sortFn,
+      sort: {
+				mode: 'custom',
+        fn: sortFn
+      },
     }
   },
 }
@@ -63,7 +99,9 @@ module.exports = {
 module.exports = {
 	plugins: {
     "vuepress-plugin-auto-sidebar": {
-      titleMode: "titlecase", // 可选 `default`、`lowercase`、`uppercase`、`capitalize`、`camelcase`、`kebabcase`、`titlecase`
+      title: {
+				mode: "titlecase" // 可选 `default`、`lowercase`、`uppercase`、`capitalize`、`camelcase`、`kebabcase`、`titlecase`
+			},
     }
   },
 }
@@ -134,10 +172,12 @@ docs
 module.exports = {
   plugins: [
     "vuepress-plugin-auto-sidebar": {
-    	titleMode: "titlecase",
-    	titleMap: {
-    		"exampleSubMenu1-a": "🎉 Hello Vuepress 🎉",
-    		"exampleSubMenu1-c": "🎉 Auto Sidebar 🎉"
+    	title: {
+    		mode: "titlecase",
+        map: {
+    			"/exampleMenu1/exampleSubMenu1-a/": "🎉 Hello Vuepress 🎉",
+    			"/exampleMenu1/exampleSubMenu1-c/": "🎉 Auto Sidebar 🎉"
+    		}
     	}
     }
   ],
@@ -163,19 +203,13 @@ exampleMenu2 # Example Menu2
 
 1. 生成导航栏文件
 
-   ```js
-   // 配置 config，生成 `nav.js`
-   module.exports = {
-     plugins: {
-       "vuepress-plugin-auto-sidebar": {
-         nav: true
-       }
-     },
-   }
+   通过命令行来生成配置文件
+   
+   ```bash
+   # vuepress nav [targetDir]
+   vuepress nav docs
    ```
-
-   配置完成后执行 `npm run docs:dev`，即可看到 `.vuepress` 目录下新增了 `nav.js` 文件。
-
+   
 2. 引入导航栏文件
 
    ```js
@@ -183,9 +217,7 @@ exampleMenu2 # Example Menu2
    
    module.exports = {
      plugins: {
-       "vuepress-plugin-auto-sidebar": {
-         nav: true
-       }
+       "vuepress-plugin-auto-sidebar": {}
      },
      themeConfig: {
        nav // ES6 简写
@@ -194,8 +226,6 @@ exampleMenu2 # Example Menu2
    ```
 
 如前言所说，只是帮助你第一次迁移大量内容时使用，所以当已存在 `.vuepress/nav.js` 时将不会重复生成覆盖之前的，一般推荐你自己配置更[个性化](https://v1.vuepress.vuejs.org/zh/theme/default-theme-config.html#%E5%AF%BC%E8%88%AA%E6%A0%8F)的导航栏及外链。
-
-当然，如果你希望重新生成，那么删除 `.vuepress/nav.js` 文件再按照上面步骤执行即可。
 
 
 
@@ -213,7 +243,9 @@ exampleMenu2 # Example Menu2
 module.exports = {
   plugins: {
     "vuepress-plugin-auto-sidebar": {
-      collapsable: true
+      collapse: {
+        open: false
+      }
     }
   },
 }
@@ -225,9 +257,11 @@ module.exports = {
 module.exports = {
   plugins: {
     "vuepress-plugin-auto-sidebar": {
-      collapseList: [
-        "/demo/more/"
-      ]
+      collapse: {
+        collapseList: [
+          "/demo/more/"
+        ]
+      }
     }
   },
 }
