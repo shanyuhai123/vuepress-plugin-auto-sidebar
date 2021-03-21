@@ -1,22 +1,8 @@
 {
-  "name": "vuepress-plugin-auto-sidebar",
-  "version": "1.5.0",
-  "description": "A vuepress plugin for generate sidebar",
-  "keywords": [
-    "vuepress",
-    "auto-sidebar",
-    "sidebar"
-  ],
-  "main": "index.js",
+  "private": true,
+  "version": "1.0.0",
   "author": "shanyuhai123",
   "license": "MIT",
-  "directories": {
-    "lib": "lib"
-  },
-  "scripts": {
-    "test": "jest --watchAll --verbose",
-    "lint": "eslint --ext .js ./ --fix"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar.git"
@@ -26,14 +12,19 @@
   },
   "homepage": "https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar#readme",
   "devDependencies": {
-    "eslint": "^7.15.0",
+    "@types/jest": "^26.0.20",
+    "@typescript-eslint/eslint-plugin": "^4.17.0",
+    "@typescript-eslint/parser": "^4.17.0",
+    "eslint": "^7.22.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "jest": "^25.1.0"
-  },
-  "dependencies": {
-    "colors": "^1.4.0"
+    "eslint-plugin-promise": "^4.3.1",
+    "jest": "^26.6.3",
+    "lerna": "^4.0.0",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.5.3",
+    "typescript": "3.8.3",
+    "vuepress-types": "^0.9.4"
   }
 }

@@ -111,3 +111,8 @@ dist
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+
+# dist
+/lib
+packages/vuepress-plugin-auto-sidebar/lib
+.temp
