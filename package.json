@@ -17,7 +17,7 @@
   "scripts": {
     "build": "lerna run --stream --sort build",
     "lint": "eslint --ext .js,.ts packages",
-    "release": "yarn lint && yarn build && lerna publish"
+    "release": "yarn build && lerna publish"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
