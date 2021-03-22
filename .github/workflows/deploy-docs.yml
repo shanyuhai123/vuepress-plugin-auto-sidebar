@@ -18,7 +18,7 @@ jobs:
           git --no-pager log --oneline -n 20
           yarn
           lerna bootstrap
-          lerna run build:lib
+          lerna run build
           lerna run docs:build
       - name: Deploy Github 🚀
         uses: peaceiris/actions-gh-pages@v3

@@ -44,7 +44,17 @@ module.exports = {
         collapseList: ["/menu1/menu1-2/"],
         // 选择要打开的目录，例如
         uncollapseList: ["/menu1/menu1-3/"]
-      }
+      },
+      // 忽略，例如
+      ignore: [
+        {
+          // 指定路径
+          menu: "/menu3/menu3-3/",
+          // 对该路径下使用的正则，默认为 `.*`
+          // 例如你想忽略以 `ignore-` 开头的文件
+          regex: "ignore-*"
+        }
+      ]
     }
   }
 }

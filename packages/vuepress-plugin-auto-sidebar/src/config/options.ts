@@ -18,5 +18,6 @@ export const AutoSidebarOptionsDefault: AutoSidebarPluginOptions = {
     open: false, // 默认是否折叠
     collapseList: [], // 折叠列表
     uncollapseList: [] // 不折叠列表
-  }
+  },
+  ignore: []
 }

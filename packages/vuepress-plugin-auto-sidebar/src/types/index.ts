@@ -7,6 +7,7 @@ interface AutoSidebarPageFrontmatter {
   autoPrev?: string
   autoNext?: string
   autoGroup?: string
+  autoIgnore?: boolean
 }
 
 export interface AutoSidebarPage {
@@ -32,6 +33,13 @@ type SIDEBAR_OPTIONS_TITLE =
   | 'camelcase'
   | 'kebabcase'
   | 'titlecase'
+
+interface IgnoreOption {
+  menu: string
+  regex?: RegExp
+}
+
+export type IgnoreOptions = IgnoreOption[]
 
 export interface SortOptions {
   mode?: SIDEBAR_OPTIONS_SORT
@@ -60,6 +68,7 @@ export interface AutoSidebarPluginOptions {
   title: TitleOptions
   sidebarDepth: number
   collapse: CollapseOptions
+  ignore: IgnoreOptions
 }
 
 export interface GroupPagesResult {

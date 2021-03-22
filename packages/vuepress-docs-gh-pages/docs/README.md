@@ -31,8 +31,6 @@ module.exports = {
 }
 ```
 
-:book: **更详细的文档见 [vuepress 自动生成侧边栏](https://shanyuhai123.github.io/vuepress-plugin-auto-sidebar)。**
-
 
 
 ### 1. 简单的导航栏

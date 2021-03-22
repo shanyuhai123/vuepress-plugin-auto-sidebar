@@ -20,7 +20,13 @@ module.exports = {
         open: true,
         collapseList: ["/menu1/menu1-2/"],
         uncollapseList: ["/menu1/menu1-3/"]
-      }
+      },
+      ignore: [
+        {
+          menu: "/menu3/menu3-3/",
+          regex: "ignore-*"
+        }
+      ]
     }
   },
   themeConfig: {

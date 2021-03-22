@@ -1,12 +1,13 @@
 import { Context } from 'vuepress-types'
-import { AutoSidebarPage, GroupPagesResult } from '../types'
+import * as colors from 'colors'
+import { AutoSidebarPage, GroupPagesResult, IgnoreOptions } from '../types'
 import { filterRootMarkdowns, getMenuPath } from './path'
 
 // 从 pages 中提取部分参数
 // 并过滤掉异常 page（非 markdown 生成的）
 export const handlePages = (ctx: Context): AutoSidebarPage[] => ctx.pages
   .filter(page => page.relativePath)
-  .map(page => ({
+  .map((page) => ({
     xxx: page.path,
     relativePath: page.relativePath,
     menuPath: getMenuPath(page.relativePath),
@@ -15,6 +16,24 @@ export const handlePages = (ctx: Context): AutoSidebarPage[] => ctx.pages
     filename: page.filename
   }))
   .filter(filterRootMarkdowns)
+  .filter((page: AutoSidebarPage) => !page.frontmatter.autoIgnore)
+
+export const handleIgnorePages = (groupPages: GroupPagesResult, ignoreOptions: IgnoreOptions) => {
+  // console.log(groupPages)
+  ignoreOptions.forEach(({ menu, regex }) => {
+    const pages = groupPages[menu]
+
+    if (!pages) {
+      console.log(colors.red(`未匹配到路径 ${menu}`))
+    } else {
+      const re = regex ? RegExp(regex) : /.*/
+
+      const filterPages = pages.filter(page => !page.filename.match(re))
+
+      groupPages[menu] = filterPages
+    }
+  })
+}
 
 // 从所有 pages 中分类为待指定排序的和无需排序的
 export const distinguishSpecifiedSortPages = (pages: AutoSidebarPage[]) => pages

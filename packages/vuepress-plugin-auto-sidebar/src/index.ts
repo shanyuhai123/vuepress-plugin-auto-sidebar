@@ -6,7 +6,7 @@ import { join } from 'path'
 import { AutoSidebarOptionsDefault } from './config/options'
 import { AutoSidebarPluginOptions } from './types'
 import { genNav } from './utils/nav'
-import { distinguishSpecifiedSortPages, groupPagesByMenuPath, handlePages } from './utils/pages'
+import { distinguishSpecifiedSortPages, groupPagesByMenuPath, handleIgnorePages, handlePages } from './utils/pages'
 import { genSidebar } from './utils/sidebar'
 import { pagesSort, pagesGroupSort, specifiedPagesSort } from './utils/sort'
 
@@ -14,7 +14,7 @@ const AutoSidebarPlugin = (
   options: AutoSidebarPluginOptions,
   ctx: Context
 ) => {
-  const MERGE_OPTIONS = merge.recursive({}, AutoSidebarOptionsDefault, options)
+  const MERGE_OPTIONS: AutoSidebarPluginOptions = merge.recursive(AutoSidebarOptionsDefault, options)
   let AUTO_SIDEBAR_DATA = Object.create(null)
 
   return {
@@ -28,6 +28,9 @@ const AutoSidebarPlugin = (
 
       // 对 defaultPages 进行分组
       const defaultPagesGroupByMenuPath = groupPagesByMenuPath(defaultPages)
+
+      // 从侧边栏隐藏指定文件
+      handleIgnorePages(defaultPagesGroupByMenuPath, MERGE_OPTIONS.ignore)
 
       // 排序优先级
       // 1. 首先会根据 sort 参数进行排序（内置或自定义）

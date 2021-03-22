@@ -60,3 +60,17 @@ autoGroup-1: 分组名称
 效果展示：
 
 <img :src="$withBase('/assets/group-config-effect.png')" alt="分组效果">
+
+
+
+## 忽略文件
+
+希望当前文件不在侧边栏中显示：
+
+```yaml
+---
+autoIgnore: true
+---
+```
+
+如果希望批量隐藏，以正则的形式匹配可参考[插件的可选项](/plugin-options)。
