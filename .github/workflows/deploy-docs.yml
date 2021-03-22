@@ -1,4 +1,4 @@
-name: Deploy Vuepress Plugin Auto Sidebar
+name: Vuepress Plugin Auto Sidebar
 on:
   push:
     branches:

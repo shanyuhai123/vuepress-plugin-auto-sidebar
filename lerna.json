@@ -10,7 +10,7 @@
       "ignoreChanges": [
         "*.md"
       ],
-      "message": "chore(release): publish",
+      "message": "chore(release): publish %v",
       "registry": "https://registry.npmjs.org/"
     }
   }
