@@ -1,5 +1,8 @@
 # Vuepress Plugin Auto Sidebar
 
+[![Deploy Vuepress Plugin Auto Sidebar](https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar/actions/workflows/deploy-docs.yml)
+
+
 English | [简体中文](./README-zh_CN.md)
 
 
