@@ -16,6 +16,7 @@ jobs:
       - name: Install and Build 🔧
         run: |
           git --no-pager log --oneline -n 20
+          yarn
           lerna bootstrap
           lerna run build:lib
           lerna run docs:build
