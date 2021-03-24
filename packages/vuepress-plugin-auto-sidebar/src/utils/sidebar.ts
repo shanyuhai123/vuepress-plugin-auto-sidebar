@@ -66,7 +66,7 @@ interface DivideMoreGroupsResult {
 const divideMoreGroups = (pagesGroup: AutoSidebarPage[]) =>
   pagesGroup.reduce((acc: DivideMoreGroupsResult, page, index) => {
     const autoGroup = Object.keys(page.frontmatter).find(f => DivideReg.test(f))
-    const filename = page.filename === 'README' ? '' : page.filename
+    const filename = page.filename.toUpperCase() === 'README' ? '' : page.filename
 
     if (!autoGroup) {
       // 不存在时推送到 default 中

@@ -30,7 +30,7 @@ const builtInSortRules: BuiltInSortRules = {
 
 // 将 README 提取到最前
 export const readmeFirstSort = (pages: AutoSidebarPage[]) => {
-  const index = pages.findIndex(page => page.filename === 'README')
+  const index = pages.findIndex(page => page.filename.toUpperCase() === 'README')
 
   if (index !== -1) {
     const README = pages.splice(index, 1)
@@ -46,7 +46,6 @@ export const pagesSort = (pagesGroup: GroupPagesResult, sortOptions: SortOptions
 
       // 自定义排序
       if (mode === 'custom') {
-        console.log(fn)
         if (!fn) {
           throw Error('未传递自定义排序函数！')
         }

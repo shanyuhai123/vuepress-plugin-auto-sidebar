@@ -19,7 +19,6 @@ export const handlePages = (ctx: Context): AutoSidebarPage[] => ctx.pages
   .filter((page: AutoSidebarPage) => !page.frontmatter.autoIgnore)
 
 export const handleIgnorePages = (groupPages: GroupPagesResult, ignoreOptions: IgnoreOptions) => {
-  // console.log(groupPages)
   ignoreOptions.forEach(({ menu, regex }) => {
     const pages = groupPages[menu]
 
