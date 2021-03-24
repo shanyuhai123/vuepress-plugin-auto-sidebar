@@ -8,7 +8,7 @@
     "sidebar"
   ],
   "author": "shanyuhai123 <864299347@qq.com>",
-  "homepage": "https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar/tree/main/packages/vuepress-plugin-auto-sidebar#readme",
+  "homepage": "https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar/tree/master/packages/vuepress-plugin-auto-sidebar#readme",
   "license": "MIT",
   "main": "lib/index.js",
   "types": "lib/types/index.d.ts",
