@@ -1,5 +1,5 @@
 ---
-title: 文件内配置
+title: Frontmatter
 autoPrev: plugin-options
 ---
 

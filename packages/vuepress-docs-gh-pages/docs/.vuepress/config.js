@@ -22,11 +22,8 @@ module.exports = {
   plugins: {
     "vuepress-plugin-auto-sidebar": {
       title: {
-        mode: "titlecase"
+        mode: "titlecase",
       },
-      sort: {
-        mode: "asc"
-      }
     },
     "@vuepress/last-updated": {
       transformer: (timestamp, lang) => {
@@ -55,7 +52,7 @@ module.exports = {
         lastUpdated: 'Last Updated',
         nav: [
           { text: 'Home', link: '/' },
-          { text: 'Features', link: '/features/' },
+          { text: 'Features', link: '/features/plugin-options' },
           { text: 'Questions', link: '/questions' },
         ]
       },
@@ -67,7 +64,7 @@ module.exports = {
         lastUpdated: '上次更新',
         nav: [
           { text: '首页', link: '/zh/' },
-          { text: '功能', link: '/zh/features/' },
+          { text: '功能', link: '/zh/features/plugin-options' },
           { text: '常见问题', link: '/zh/questions' },
         ]
       },

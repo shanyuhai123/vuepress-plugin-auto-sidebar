@@ -1,5 +1,5 @@
 ---
-title: 快速了解
+title: Getting started
 sidebar: auto
 ---
 
@@ -7,7 +7,7 @@ sidebar: auto
 
 This is a plugin that automatically generates a sidebar for vuepress.
 
-If you just write a simple introduction page, you may do not need to use it, just use the [native sidebar](https://vuepress.vuejs.org/theme/default-theme-config.html#sidebar). But if you want to use vuepress to record a lot of things, such as: [飞跃高山与大洋的鱼的笔记](https://docs.shanyuhai.top/), then you can try it.
+If you just write a simple page, just use the native [sidebar](https://vuepress.vuejs.org/theme/default-theme-config.html#sidebar) will be enough. But if you want to use vuepress to record a lot of things, such as: [飞跃高山与大洋的鱼的笔记](https://docs.shanyuhai.top/), then you can try the plugin.
 
 
 

@@ -2,7 +2,7 @@
 title: 插件的可选项
 ---
 
-## 概览
+## Overview
 
 该插件提供了以下可选项，更详细的解释看下方：
 
@@ -62,7 +62,7 @@ module.exports = {
 
 
 
-## sort（排序）
+## sort
 
 很多时候一些博客或笔记阅读起来是有先后顺序的，而利用在文件名前追加 `01-`、`10-` 来排序方式总会让人难以接受。
 
@@ -97,7 +97,7 @@ module.exports = {
 
 
 
-## title（标题）
+## title
 
 默认的标题是对应文件夹的名称，过去习惯命名文件夹一般是小驼峰，而作为标题它就显得有些糟糕了。
 
@@ -205,7 +205,7 @@ exampleMenu2 # Example Menu2
 
 
 
-## nav（导航栏）
+## nav
 
 为了简化你第一次搬迁博客、笔记的成本，它仅仅提供了一个简单的生成导航栏的方式。
 
@@ -239,13 +239,13 @@ exampleMenu2 # Example Menu2
 
 
 
-## sidebarDepth（标题深度）
+## sidebarDepth
 
 该可选项可配置全局的 `depth`，如果你希望配置某个文件的 `depth` 修改文件内的 [sidebarDepth](https://v1.vuepress.vuejs.org/zh/theme/default-theme-config.html#%E5%B5%8C%E5%A5%97%E7%9A%84%E6%A0%87%E9%A2%98%E9%93%BE%E6%8E%A5) 即可。
 
 
 
-## collapsable（折叠）
+## collapsable
 
 作为一个博客、笔记虽然希望能够快速找到对应的内容（即默认 `collapsable` 为 false ），但也支持开启它：
 
