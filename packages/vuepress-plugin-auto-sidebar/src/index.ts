@@ -18,6 +18,8 @@ const AutoSidebarPlugin = (
   const MERGE_OPTIONS: AutoSidebarPluginOptions = merge.recursive(AutoSidebarOptionsDefault, options)
   let AUTO_SIDEBAR_DATA = Object.create(null)
 
+  const isGitValid = checkGit(ctx.sourceDir)
+
   return {
     name: 'vuepress-plugin-auto-sidebar',
     ready () {
@@ -51,15 +53,15 @@ const AutoSidebarPlugin = (
       }
     },
     async extendPageData (page: AutoSidebarPage) {
-      const filepath = join(ctx.sourceDir, page.relativePath)
+      if (page.relativePath) {
+        const filepath = join(ctx.sourceDir, page.relativePath)
 
-      const isGitValid = checkGit(ctx.sourceDir)
+        if (isGitValid) {
+          const createdTime = await getGitCreatedTime(filepath)
 
-      if (isGitValid) {
-        const createdTime = await getGitCreatedTime(filepath)
-
-        if (!isNaN(createdTime)) {
-          page.createdTime = createdTime
+          if (!isNaN(createdTime)) {
+            page.createdTime = createdTime
+          }
         }
       }
     },
