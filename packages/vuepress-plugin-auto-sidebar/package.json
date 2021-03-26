@@ -1,6 +1,6 @@
 {
   "name": "vuepress-plugin-auto-sidebar",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "A vuepress plugin for generate sidebar",
   "keywords": [
     "vuepress",
