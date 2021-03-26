@@ -1,4 +1,4 @@
-import { PageFrontmatter } from 'vuepress-types'
+import { Page, PageFrontmatter } from 'vuepress-types'
 
 export type ArraySortFn<T> = (pageA: T, pageB: T) => number
 export type ArrayMapFn<T> = (value: T, index: number, array: T[]) => any[]
@@ -10,20 +10,21 @@ interface AutoSidebarPageFrontmatter {
   autoIgnore?: boolean
 }
 
-export interface AutoSidebarPage {
+export interface AutoSidebarPage extends Partial<Page> {
   relativePath: string
   menuPath: string
   frontmatter: PageFrontmatter & AutoSidebarPageFrontmatter
   date: string
   filename: string
+  createdTime: number
 }
 
 type SIDEBAR_OPTIONS_SORT =
   | 'asc' // 升序
   | 'desc' // 降序
   | 'custom' // 自定义
-  // | 'date_asc' // 时间升序
-  // | 'date_desc' // 时间降序
+  | 'created_time_asc' // 时间升序
+  | 'created_time_desc' // 时间降序
 
 type SIDEBAR_OPTIONS_TITLE =
   | 'default'

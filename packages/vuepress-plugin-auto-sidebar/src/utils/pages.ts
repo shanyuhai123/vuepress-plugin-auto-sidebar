@@ -1,22 +1,22 @@
-import { Context } from 'vuepress-types'
 import * as colors from 'colors'
 import { AutoSidebarPage, GroupPagesResult, IgnoreOptions } from '../types'
 import { filterRootMarkdowns, getMenuPath } from './path'
 
 // 从 pages 中提取部分参数
 // 并过滤掉异常 page（非 markdown 生成的）
-export const handlePages = (ctx: Context): AutoSidebarPage[] => ctx.pages
-  .filter(page => page.relativePath)
-  .map((page) => ({
-    xxx: page.path,
-    relativePath: page.relativePath,
-    menuPath: getMenuPath(page.relativePath),
-    frontmatter: page.frontmatter,
-    date: page.date,
-    filename: page.filename
-  }))
-  .filter(filterRootMarkdowns)
-  .filter((page: AutoSidebarPage) => !page.frontmatter.autoIgnore)
+export const handlePages = (pages: AutoSidebarPage[]): AutoSidebarPage[] =>
+  pages
+    .filter(page => page.relativePath)
+    .map((page) => ({
+      relativePath: page.relativePath,
+      menuPath: getMenuPath(page.relativePath),
+      frontmatter: page.frontmatter,
+      date: page.date,
+      createdTime: page.createdTime,
+      filename: page.filename
+    }))
+    .filter(filterRootMarkdowns)
+    .filter((page) => !page.frontmatter.autoIgnore)
 
 export const handleIgnorePages = (groupPages: GroupPagesResult, ignoreOptions: IgnoreOptions) => {
   ignoreOptions.forEach(({ menu, regex }) => {

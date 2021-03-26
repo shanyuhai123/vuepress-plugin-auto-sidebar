@@ -4,11 +4,12 @@ import * as colors from 'colors/safe'
 import { existsSync, writeFileSync } from 'fs'
 import { join } from 'path'
 import { AutoSidebarOptionsDefault } from './config/options'
-import { AutoSidebarPluginOptions } from './types'
+import { AutoSidebarPage, AutoSidebarPluginOptions } from './types'
 import { genNav } from './utils/nav'
 import { distinguishSpecifiedSortPages, groupPagesByMenuPath, handleIgnorePages, handlePages } from './utils/pages'
 import { genSidebar } from './utils/sidebar'
 import { pagesSort, pagesGroupSort, specifiedPagesSort } from './utils/sort'
+import { checkGit, getGitCreatedTime } from './utils/git'
 
 const AutoSidebarPlugin = (
   options: AutoSidebarPluginOptions,
@@ -21,7 +22,7 @@ const AutoSidebarPlugin = (
     name: 'vuepress-plugin-auto-sidebar',
     ready () {
       // 核心是对 pages 进行整理
-      const pages = handlePages(ctx)
+      const pages = handlePages(ctx.pages as AutoSidebarPage[])
 
       // 获取指定排序的 pages
       const { specifiedSortPages, defaultPages } = distinguishSpecifiedSortPages(pages)
@@ -47,6 +48,19 @@ const AutoSidebarPlugin = (
       return {
         name: 'auto-sidebar-enhance',
         content: `export default ({ siteData, options }) => { siteData.themeConfig.sidebar = ${JSON.stringify(AUTO_SIDEBAR_DATA)} }`
+      }
+    },
+    async extendPageData (page: AutoSidebarPage) {
+      const filepath = join(ctx.sourceDir, page.relativePath)
+
+      const isGitValid = checkGit(ctx.sourceDir)
+
+      if (isGitValid) {
+        const createdTime = await getGitCreatedTime(filepath)
+
+        if (!isNaN(createdTime)) {
+          page.createdTime = createdTime
+        }
       }
     },
     extendCli (cli: any) {

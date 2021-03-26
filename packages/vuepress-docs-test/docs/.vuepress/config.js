@@ -6,7 +6,7 @@ module.exports = {
   plugins: {
     "vuepress-plugin-auto-sidebar": {
       sort: {
-        mode: "asc",
+        mode: "created_time_desc",
       },
       title: {
         mode: "titlecase",

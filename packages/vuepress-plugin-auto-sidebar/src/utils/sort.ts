@@ -23,9 +23,9 @@ const findSpecifiedPageIndex = (defaultPagesGroupByMenuPath: GroupPagesResult, p
 // 内置排序规则
 const builtInSortRules: BuiltInSortRules = {
   asc: (pageA, pageB) => pageA.filename > pageB.filename ? 1 : -1,
-  desc: (pageA, pageB) => pageA.filename > pageB.filename ? -1 : 1
-  // 'date_asc':
-  // 'date_desc':
+  desc: (pageA, pageB) => pageA.filename > pageB.filename ? -1 : 1,
+  created_time_asc: (pageA, pageB) => pageA.createdTime > pageB.createdTime ? 1 : -1,
+  created_time_desc: (pageA, pageB) => pageA.createdTime > pageB.createdTime ? -1 : 1
 }
 
 // 将 README 提取到最前
@@ -57,7 +57,16 @@ export const pagesSort = (pagesGroup: GroupPagesResult, sortOptions: SortOptions
       if (!mode) {
         pages.sort(builtInSortRules.asc)
       } else {
-        pages.sort(builtInSortRules[mode])
+        // 时间排序基于 git，部分文件未被跟踪时作出提示
+        if (sortOptions.mode === 'created_time_asc' || sortOptions.mode === 'created_time_desc') {
+          const untracked = pages.filter(page => !page.createdTime)
+
+          untracked.forEach(un => {
+            console.log(colors.red(`${un.menuPath}${un.filename} 未被 git 跟踪，无法参与有效排序`))
+          })
+        }
+
+        pages.sort(builtInSortRules[mode] || builtInSortRules.asc)
       }
 
       // 判断是否将 README 提前
