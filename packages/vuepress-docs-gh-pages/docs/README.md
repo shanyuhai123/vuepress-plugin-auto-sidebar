@@ -3,15 +3,15 @@ title: 快速了解
 sidebar: auto
 ---
 
-## 介绍（Introduction）
+## Introduction
 
-这是为 vuepress 自动生成侧边栏的插件。
+This is a plugin that automatically generates a sidebar for vuepress.
 
-如果你只是写一个简单介绍页，那没必要使用它，但如果你希望用 vuepress 记录很多的东西，例如：[飞跃高山与大洋的鱼的笔记](https://docs.shanyuhai.top/)，那你可以试一试这个插件。
+If you just write a simple introduction page, you may do not need to use it, just use the [native sidebar](https://vuepress.vuejs.org/theme/default-theme-config.html#sidebar). But if you want to use vuepress to record a lot of things, such as: [飞跃高山与大洋的鱼的笔记](https://docs.shanyuhai.top/), then you can try it.
 
 
 
-## 安装（Install）
+## Install
 
 ```bash
 npm i vuepress-plugin-auto-sidebar -D
@@ -19,23 +19,27 @@ npm i vuepress-plugin-auto-sidebar -D
 
 
 
-## 使用（Usage）
+## Usage
 
-> **注意，请勿将 plugins 放在 themeConfig 中**，如何[使用插件](https://vuepress.vuejs.org/zh/plugin/using-a-plugin.html)。
+> **Attention, do not put `plugins` in the themeConfig**, [how to use plugins](https://vuepress.vuejs.org/plugin/using-a-plugin.html#using-a-plugin)。
 
 ```js
 module.exports = {
   plugins: {
-    "vuepress-plugin-auto-sidebar": {}
+    "vuepress-plugin-auto-sidebar": {
+      // options
+    }
   }
 }
 ```
 
+You can see more options, [here](/features/).
 
 
-### 1. 简单的导航栏
 
-在新的版本中我们扩展了 `vuepress cli` 来帮助你快速生成简单的导航栏：
+### 1. Simple Navbar
+
+In the new version, we have extended `vuepress cli` to help you quickly generate a simple navigation bar:
 
 ```bash
 vuepress nav docs
