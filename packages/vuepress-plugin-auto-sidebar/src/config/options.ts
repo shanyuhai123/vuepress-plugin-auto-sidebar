@@ -8,7 +8,7 @@ export const AutoSidebarOptionsDefault: AutoSidebarPluginOptions = {
   },
   // 标题
   title: {
-    mode: 'default', // 标题模式
+    mode: 'titlecase', // 标题模式
     map: {} // 标题映射
   },
   // 标题深度

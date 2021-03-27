@@ -39,7 +39,7 @@ module.exports = {
 
 ### 1. Simple Navbar
 
-In the new version, we have extended `vuepress cli` to help you quickly generate a simple navigation bar:
+We have extended `vuepress cli` to help you quickly generate a simple navigation bar, [how to use it](https://shanyuhai123.github.io/vuepress-plugin-auto-sidebar/features/plugin-options.html#nav):
 
 ```bash
 vuepress nav docs

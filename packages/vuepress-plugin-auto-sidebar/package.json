@@ -4,11 +4,12 @@
   "description": "A vuepress plugin for generate sidebar",
   "keywords": [
     "vuepress",
-    "auto-sidebar",
-    "sidebar"
+    "sidebar",
+    "bar",
+    "auto-sidebar"
   ],
   "author": "shanyuhai123 <864299347@qq.com>",
-  "homepage": "https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar/tree/master/packages/vuepress-plugin-auto-sidebar#readme",
+  "homepage": "https://shanyuhai123.github.io/vuepress-plugin-auto-sidebar/",
   "license": "MIT",
   "main": "lib/index.js",
   "types": "lib/types/index.d.ts",

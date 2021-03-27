@@ -39,7 +39,7 @@ module.exports = {
 
 ### 1. 简单的导航栏
 
-在新的版本中我们扩展了 `vuepress cli` 来帮助你快速生成简单的导航栏：
+我们扩展了 `vuepress cli` 来帮助你快速生成简单的导航栏，[如何使用它](https://shanyuhai123.github.io/vuepress-plugin-auto-sidebar/zh/features/plugin-options.html#nav-%E5%AF%BC%E8%88%AA%E6%A0%8F)：
 
 ```bash
 vuepress nav docs
