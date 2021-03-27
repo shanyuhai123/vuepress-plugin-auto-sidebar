@@ -24,6 +24,7 @@ module.exports = {
       title: {
         mode: "titlecase",
       },
+      sidebarDepth: 2
     },
     "@vuepress/last-updated": {
       transformer: (timestamp, lang) => {

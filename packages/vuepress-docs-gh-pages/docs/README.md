@@ -9,6 +9,8 @@ This is a plugin that automatically generates a sidebar for vuepress.
 
 If you just write a simple page, just use the native [sidebar](https://vuepress.vuejs.org/theme/default-theme-config.html#sidebar) will be enough. But if you want to use vuepress to record a lot of things, such as: [飞跃高山与大洋的鱼的笔记](https://docs.shanyuhai.top/), then you can try the plugin.
 
+> Due to my poor English, when you confused about the documentation, you can create an [issue](https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar/issues).
+
 
 
 ## Install
@@ -39,7 +41,7 @@ You can see more options, [here](/features/).
 
 ### 1. Simple Navbar
 
-In the new version, we have extended `vuepress cli` to help you quickly generate a simple navigation bar:
+We have extended `vuepress cli` to help you quickly generate a simple navigation bar, [how to use it](/features/plugin-options.html#nav).
 
 ```bash
 vuepress nav docs
