@@ -66,7 +66,7 @@ autoGroup-2: 数组方法
 ---
 ```
 
-Among them, `-` and `+` choose one. `-` means below the default group, `+` means above the default group, and the number behind them determines the order. 
+Among them, `-` and `+` choose one. `-` means below the default group, `+` means above the default group, and the number behind the symbol determines the order. 
 
 Here is a example:
 

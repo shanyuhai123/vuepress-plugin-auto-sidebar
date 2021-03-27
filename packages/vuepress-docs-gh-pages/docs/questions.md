@@ -17,7 +17,7 @@ Sorry, my original intention is this, but everyone's needs are not consistent, a
 
 ## 2. Why page 404?。
 
-The vuepress illutrates the relationship between file path and page routing.
+The VuePress illustrates the relationship between file path and page routing.
 
 | Relative Path      | Page Routing   |
 | ------------------ | -------------- |
@@ -25,7 +25,7 @@ The vuepress illutrates the relationship between file path and page routing.
 | `/guide/README.md` | `/guide/`      |
 | `/config.md`       | `/config.html` |
 
-So when the page 404 is due to lack of `README.md` file.
+So when visit the `/guide/` page 404 is due to lack of `README.md` file.
 
 
 

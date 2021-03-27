@@ -26,16 +26,20 @@ npm i vuepress-plugin-auto-sidebar -D
 ```js
 module.exports = {
   plugins: {
-    "vuepress-plugin-auto-sidebar": {}
+    "vuepress-plugin-auto-sidebar": {
+      // options
+    }
   }
 }
 ```
+
+更多的[配置选项](/zh/features/plugin-options)。
 
 
 
 ### 1. 简单的导航栏
 
-在新的版本中我们扩展了 `vuepress cli` 来帮助你快速生成简单的导航栏：
+我们扩展了 `vuepress cli` 来帮助你快速生成简单的导航栏，[如何使用它](/zh/features/plugin-options.html#nav-导航栏)：
 
 ```bash
 vuepress nav docs

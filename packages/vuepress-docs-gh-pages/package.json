@@ -18,6 +18,7 @@
     "url": "https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar/issues"
   },
   "dependencies": {
+    "@vuepress/plugin-google-analytics": "^1.8.2",
     "moment": "^2.29.1",
     "vuepress": "^1.8.2",
     "vuepress-plugin-auto-sidebar": "^2.2.1"
