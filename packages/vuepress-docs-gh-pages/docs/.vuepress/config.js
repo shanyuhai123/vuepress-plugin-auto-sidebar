@@ -6,6 +6,8 @@ module.exports = {
   base: "/vuepress-plugin-auto-sidebar/",
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['meta', { name: 'keywords', content: 'vuepress,vuepress bar,vuepress sidebar,vuepress auto sidebar,vuepress 侧边栏,vuepress 自动生成侧边栏'}],
+    ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1'}]
   ],
   locales: {
     '/': {

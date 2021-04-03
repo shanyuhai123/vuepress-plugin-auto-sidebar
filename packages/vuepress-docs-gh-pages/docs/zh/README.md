@@ -33,7 +33,7 @@ module.exports = {
 }
 ```
 
-更多的[配置选项](/zh/features/plugin-options.html)。
+更多的[插件选项](/zh/features/plugin-options.html)。
 
 
 

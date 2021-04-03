@@ -35,7 +35,7 @@ module.exports = {
 }
 ```
 
-You can see more options, [here](/features/plugin-options.html).
+You can see more [plugin options](/features/plugin-options.html).
 
 
 
