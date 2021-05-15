@@ -57,6 +57,7 @@ module.exports = {
           { text: 'Home', link: '/' },
           { text: 'Features', link: '/features/plugin-options' },
           { text: 'Questions', link: '/questions' },
+          { text: 'CHANGELOG🥳', link: '/CHANGELOG🥳/CHANGELOG' },
         ]
       },
       '/zh/': {
@@ -69,6 +70,7 @@ module.exports = {
           { text: '首页', link: '/zh/' },
           { text: '功能', link: '/zh/features/plugin-options' },
           { text: '常见问题', link: '/zh/questions' },
+          { text: '更新日志🥳', link: '/zh/更新日志🥳/更新日志' },
         ]
       },
     }
