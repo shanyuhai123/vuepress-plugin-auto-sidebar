@@ -1,6 +1,7 @@
 import { AutoSidebarPage, AutoSidebarPluginOptions, BuiltInTitleRules, GroupPagesResult, SidebarGroupResult, TitleOptions } from '../types'
 
 const DivideReg = /autoGroup([+-])(\d*)/
+export const titleReg = /^[\w\s\-.]+$/g
 
 const toDefaultCase = (str: string) => str
 const toLowerCase = (str: string) => str.toLowerCase()
@@ -50,6 +51,13 @@ const formatTitle = (title: string = '', titleOptions: TitleOptions): string => 
 
   // 默认规则时取最后一项
   const endTitle = title.split('/').slice(-2, -1).toString()
+
+  // 判断是否为非英文
+  if (!endTitle.match(titleReg)) {
+    return endTitle
+  }
+
+  // 为英文时才走规则
   if (!mode) {
     return builtInTitleRules.default(endTitle)
   }

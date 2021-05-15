@@ -26,7 +26,8 @@
     "url": "git+https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar.git"
   },
   "scripts": {
-    "build": "rimraf lib && tsc -p tsconfig.json"
+    "build": "rimraf lib && tsc -p tsconfig.json",
+    "test": "jest"
   },
   "bugs": {
     "url": "https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar/issues"
