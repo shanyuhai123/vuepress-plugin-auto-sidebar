@@ -33,6 +33,34 @@ autoNext: other-filename
 
 
 
+## autoSort
+
+是比 `autoPrev/autoNext` 更简单的排序形式。
+
+所有文件会根据 `autoSort` 的大小进行排序，数值大的在前，数值小的在后，负数值会排在不具有 `autoSort` 属性的文件后。
+
+```md
+---
+autoSort: 1
+---
+```
+
+> 如果你希望 `README` 文件一直排在前面，可在插件中配置：
+>
+> ```js
+> module.exports = {
+>   plugins: {
+>     "vuepress-plugin-auto-sidebar": {
+>       sort: {
+>         readmeFirstForce: false
+>       }
+>     }
+>   }
+> }
+> ```
+
+
+
 ## sidebarDepth
 
 markdown 文件内的 `sidebarDepth` 会覆盖全局设置：

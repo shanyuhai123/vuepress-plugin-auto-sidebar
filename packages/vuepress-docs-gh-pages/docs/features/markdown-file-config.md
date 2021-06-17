@@ -31,6 +31,34 @@ If it points to a file that does not exist, it will not be displayed in the side
 
 
 
+## autoSort
+
+It is more friendly than [built-in rules](/features/plugin-options.html#_1-built-in-rules) and simpler than  `autoPrev/autoNext`.
+
+All files will be sorted according to the value of `autoSort`, with larger values coming first and smaller values coming second. Note that negative values will be sorted after files that do not have the `autoSort` property.
+
+```md
+---
+autoSort: 1
+---
+```
+
+> If you want the `README` file to always be in the front, you can configure it in the plugin:
+>
+> ```js
+> module.exports = {
+>   plugins: {
+>     "vuepress-plugin-auto-sidebar": {
+>       sort: {
+>         readmeFirstForce: false
+>       }
+>     }
+>   }
+> }
+> ```
+
+
+
 ## sidebarDepth
 
 A page can also override this value via `YAML front matter`:

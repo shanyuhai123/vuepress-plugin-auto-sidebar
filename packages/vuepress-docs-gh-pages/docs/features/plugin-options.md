@@ -85,6 +85,10 @@ If you want to sort according to other attributes of the file,you can visit [vue
 
 Above the sort rules, you also want `some-filename` sort before or after `other-filename`，you can use the [autoPrev/autoNext](/features/markdown-file-config.html#autoprev-autonext) in the markdown file.
 
+### 4. value sort（v2.3.0）
+
+More friendly than [built-in rules](/features/plugin-options.html#_1-built-in-rules) and simpler than [precise sort](/features/plugin-options.html#_3-precise-sort), you can use [autoSort](/features/markdown-file-config.html#autosort) in the markdown file.
+
 
 
 ## title

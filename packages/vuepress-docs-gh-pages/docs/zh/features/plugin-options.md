@@ -13,6 +13,7 @@ module.exports = {
       sort: {
         mode: "asc",
         readmeFirst: true,
+        readmeFirstForce: false
       },
       title: {
         mode: "titlecase",
@@ -84,6 +85,10 @@ module.exports = {
 ### 3. 更精准的排序
 
 在以上的规则下，你还想指定其他文件在当前文件之前可以在 markdown 文件中添加 [autoPrev 或 autoNext](/zh/features/markdown-file-config.html#autoprev-autonext)。
+
+### 4. 数值排序（v2.3.0）
+
+比**规则排序**更友好，比**精准排序**更简单，在 markdown 文件中添加 [autoSort](/zh/features/markdown-file-config.html#autosort)。
 
 
 
