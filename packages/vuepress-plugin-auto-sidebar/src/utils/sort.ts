@@ -38,6 +38,14 @@ export const readmeFirstSort = (pages: AutoSidebarPage[]) => {
   }
 }
 
+// 根据数值排序（autoSort）
+const sortByAutoSort = (pages: AutoSidebarPage[]) => pages.sort((pageA, pageB) => {
+  const pageASort = Number(pageA.frontmatter.autoSort) || 0
+  const pageBSort = Number(pageB.frontmatter.autoSort) || 0
+
+  return pageBSort - pageASort
+})
+
 // 对 defaultPages 的内容进行排序
 export const pagesSort = (pagesGroup: GroupPagesResult, sortOptions: SortOptions) =>
   Object.values(pagesGroup)
@@ -71,6 +79,12 @@ export const pagesSort = (pagesGroup: GroupPagesResult, sortOptions: SortOptions
 
       // 判断是否将 README 提前
       if (sortOptions.readmeFirst) {
+        readmeFirstSort(pages)
+      }
+
+      sortByAutoSort(pages)
+      // 强制将 README 提前
+      if (sortOptions.readmeFirstForce) {
         readmeFirstSort(pages)
       }
     })
