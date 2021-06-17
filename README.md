@@ -3,7 +3,7 @@
 [![Vuepress Plugin Auto Sidebar](https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar/actions/workflows/deploy-docs.yml) ![npm](https://img.shields.io/npm/dt/vuepress-plugin-auto-sidebar)
 
 
-English | [简体中文](./README-zh_CN.md)
+🇬🇧 English | [🇨🇳 简体中文](./README-zh_CN.md)
 
 
 
