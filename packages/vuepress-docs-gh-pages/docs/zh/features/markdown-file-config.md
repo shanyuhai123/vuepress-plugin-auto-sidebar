@@ -52,7 +52,7 @@ autoSort: 1
 >   plugins: {
 >     "vuepress-plugin-auto-sidebar": {
 >       sort: {
->         readmeFirstForce: false
+>         readmeFirstForce: true
 >       }
 >     }
 >   }
