@@ -19,7 +19,7 @@
     "build": "lerna run --stream --sort build",
     "lint": "eslint --ext .js,.ts packages",
     "release": "yarn build && lerna publish",
-    "release:next": "yarn build && lerna publish --dist-tag next"
+    "release:alpha": "yarn build && lerna publish --dist-tag alpha"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",

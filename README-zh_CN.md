@@ -17,6 +17,9 @@
 
 ```bash
 npm i vuepress-plugin-auto-sidebar -D
+
+# v2 alpha(测试版)
+npm i vuepress-plugin-auto-sidebar@alpha -D
 ```
 
 
