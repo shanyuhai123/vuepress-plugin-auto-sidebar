@@ -2,13 +2,11 @@ import { Context } from 'vuepress-types'
 import merge from 'merge'
 import * as colors from 'colors/safe'
 import { existsSync, writeFileSync } from 'fs'
-import { join } from 'path'
+import { join, resolve } from 'path'
+import readyOrPreparedPages from './core'
 import { AutoSidebarOptionsDefault } from './config/options'
-import { AutoSidebarPage, AutoSidebarPluginOptions } from './types'
+import { AutoSidebarPage, AutoSidebarPluginOptions, VuePressVersion } from './types'
 import { genNav } from './utils/nav'
-import { distinguishSpecifiedSortPages, groupPagesByMenuPath, handleIgnorePages, handlePages } from './utils/pages'
-import { genSidebar } from './utils/sidebar'
-import { pagesSort, pagesGroupSort, specifiedPagesSort } from './utils/sort'
 import { checkGit, getGitCreatedTime } from './utils/git'
 
 const AutoSidebarPlugin = (
@@ -22,29 +20,30 @@ const AutoSidebarPlugin = (
 
   return {
     name: 'vuepress-plugin-auto-sidebar',
+    // v1 生命周期
     ready () {
-      // 核心是对 pages 进行整理
-      const pages = handlePages(ctx.pages as AutoSidebarPage[])
+      // 置为 v1，避免用户误操作
+      MERGE_OPTIONS.version = VuePressVersion.V1
 
-      // 获取指定排序的 pages
-      const { specifiedSortPages, defaultPages } = distinguishSpecifiedSortPages(pages)
+      const sidebarData = readyOrPreparedPages(ctx.pages as AutoSidebarPage[], MERGE_OPTIONS)
 
-      // 对 defaultPages 进行分组
-      const defaultPagesGroupByMenuPath = groupPagesByMenuPath(defaultPages)
+      AUTO_SIDEBAR_DATA = sidebarData
+    },
+    // v2 生命周期
+    onPrepared (App: any) {
+      // 置为 v2，避免用户误操作
+      MERGE_OPTIONS.version = VuePressVersion.V2
 
-      // 从侧边栏隐藏指定文件
-      handleIgnorePages(defaultPagesGroupByMenuPath, MERGE_OPTIONS.ignore)
+      // v2 缺乏部分参数，补齐
+      const pages = App.pages.map((page: any) => ({
+        ...page,
+        relativePath: page.filePathRelative,
+        filename: page.slug // TODO: 使用 slug 有些奇怪，但 v2 版本未提供更好的选择
+      }))
+      const sidebarData = readyOrPreparedPages(pages as AutoSidebarPage[], MERGE_OPTIONS)
 
-      // 排序优先级
-      // 1. 首先会根据 sort 参数进行排序（内置或自定义）
-      //    1.1 在内置规则下会判断 README 是否提前，默认为提前，而自定义规则时自行处理
-      // 2. 将 specifiedSortPages 插入已排序的 defaultPagesGroupByMenuPath 中
-      pagesSort(defaultPagesGroupByMenuPath, MERGE_OPTIONS.sort)
-      specifiedPagesSort(defaultPagesGroupByMenuPath, specifiedSortPages)
-
-      const sortedGroupPages = pagesGroupSort(defaultPagesGroupByMenuPath)
-
-      AUTO_SIDEBAR_DATA = genSidebar(sortedGroupPages, MERGE_OPTIONS)
+      const destSidebar = resolve(App.options.source, '.vuepress', `${MERGE_OPTIONS.output.filename}.js`)
+      writeFileSync(destSidebar, `module.exports = ${JSON.stringify(sidebarData, null, 2)};`)
     },
     enhanceAppFiles () {
       return {

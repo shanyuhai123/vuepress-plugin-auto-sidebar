@@ -1,11 +1,15 @@
 # Vuepress Plugin Auto Sidebar
 
-[![Vuepress Plugin Auto Sidebar](https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar/actions/workflows/deploy-docs.yml)
+[![Vuepress Plugin Auto Sidebar](https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar/actions/workflows/deploy-docs.yml) ![npm](https://img.shields.io/npm/dt/vuepress-plugin-auto-sidebar) ![npm](https://img.shields.io/npm/v/vuepress-plugin-auto-sidebar)
 
 
-English | [简体中文](./README-zh_CN.md)
+🇬🇧 English | [🇨🇳 简体中文](./README-zh_CN.md)
 
 
+
+> 现在，它已经支持 VuePress V2 了。
+>
+> Now, it is support VuePress V2.
 
 ## 介绍（Introduction）
 
@@ -27,21 +31,39 @@ npm i vuepress-plugin-auto-sidebar -D
 
 ```js
 module.exports = {
-  plugins: {
-    "vuepress-plugin-auto-sidebar": {}
+  plugins: [
+    ["vuepress-plugin-auto-sidebar", {}]
+  ]
+}
+```
+
+### 1. 引入（Require）
+
+In VuePress V1 the above can quickly help you enable the plugin, but since VuePress V2 does not yet provide the corresponding capabilities, you need to introduce the generated `sidebar.js` file yourself.
+
+在 VuePress V1 中以上就可以快速帮你启用该插件了，但由于 VuePress V2 尚未提供对应的能力，所以你需要自行引入生成的 `sidebar.js` 文件：
+
+```js
+const sidebarConf = require('./sidebar')
+
+module.exports = {
+  plugins: [
+    ["vuepress-plugin-auto-sidebar", {}]
+  ],
+  themeConfig: {
+    sidebar: sidebarConf
   }
 }
 ```
 
 :book: **For more detailed documentation, you can visit [vuepress-plugin-auto-sidebar](https://shanyuhai123.github.io/vuepress-plugin-auto-sidebar)。**
 
-
-
-### 1. Simple Navbar
+### 2. Simple Navbar
 
 We have extended `vuepress cli` to help you quickly generate a simple navigation bar, [how to use it](https://shanyuhai123.github.io/vuepress-plugin-auto-sidebar/features/plugin-options.html#nav):
 
 ```bash
+# V2 not support
 vuepress nav docs
 ```
 

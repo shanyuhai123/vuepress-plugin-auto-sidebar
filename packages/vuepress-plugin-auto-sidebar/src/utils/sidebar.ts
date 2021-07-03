@@ -1,4 +1,4 @@
-import { AutoSidebarPage, AutoSidebarPluginOptions, BuiltInTitleRules, GroupPagesResult, SidebarGroupResult, TitleOptions } from '../types'
+import { AutoSidebarPage, AutoSidebarPluginOptions, BuiltInTitleRules, GroupPagesResult, SidebarGroupResult, TitleOptions, VuePressVersion } from '../types'
 
 const DivideReg = /autoGroup([+-])(\d*)/
 export const titleReg = /^[\w\s\-.]+$/g
@@ -71,10 +71,14 @@ interface DivideMoreGroupsResult {
 }
 
 // 根据 markdown 内的 autoGroup 字段进行分组
-const divideMoreGroups = (pagesGroup: AutoSidebarPage[]) =>
+const divideMoreGroups = (pagesGroup: AutoSidebarPage[], options: AutoSidebarPluginOptions) =>
   pagesGroup.reduce((acc: DivideMoreGroupsResult, page, index) => {
     const autoGroup = Object.keys(page.frontmatter).find(f => DivideReg.test(f))
-    const filename = page.filename.toUpperCase() === 'README' ? '' : page.filename
+    const filename = options.version === VuePressVersion.V2
+      ? page.filename + '.md'
+      : page.filename.toUpperCase() === 'README'
+        ? ''
+        : page.filename
 
     if (!autoGroup) {
       // 不存在时推送到 default 中
@@ -130,6 +134,7 @@ const divideMoreGroups = (pagesGroup: AutoSidebarPage[]) =>
   })
 
 const genGroup = (title: string, children = [''], collapsable = false, sidebarDepth = 1) => ({
+  text: title,
   title,
   collapsable,
   sidebarDepth,
@@ -144,7 +149,7 @@ export const genSidebar = (sortedGroupPages: GroupPagesResult, options: AutoSide
       const title = formatTitle(group, options.title)
 
       // 查看当前分组内部是否进行二次划分
-      const { above, default: defaultGroup, below } = divideMoreGroups(sortedGroupPages[group])
+      const { above, default: defaultGroup, below } = divideMoreGroups(sortedGroupPages[group], options)
 
       // 判断当前分组能否折叠
       const collapsable = options.collapse.collapseList?.find(co => co === group)

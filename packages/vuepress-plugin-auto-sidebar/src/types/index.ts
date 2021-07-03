@@ -3,6 +3,11 @@ import { Page, PageFrontmatter } from 'vuepress-types'
 export type ArraySortFn<T> = (pageA: T, pageB: T) => number
 export type ArrayMapFn<T> = (value: T, index: number, array: T[]) => any[]
 
+export enum VuePressVersion {
+  V1 = 'v1',
+  V2 = 'v2'
+}
+
 interface AutoSidebarPageFrontmatter {
   autoPrev?: string
   autoNext?: string
@@ -65,12 +70,18 @@ export interface CollapseOptions {
   uncollapseList?: string[]
 }
 
+interface OutputOptions {
+  filename: string
+}
+
 export interface AutoSidebarPluginOptions {
+  version: VuePressVersion
+  output: OutputOptions
   sort: SortOptions
   title: TitleOptions
   sidebarDepth: number
   collapse: CollapseOptions
-  ignore: IgnoreOptions
+  ignore: IgnoreOptions,
 }
 
 export interface GroupPagesResult {

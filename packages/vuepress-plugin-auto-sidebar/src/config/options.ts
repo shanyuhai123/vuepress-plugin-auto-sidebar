@@ -1,6 +1,11 @@
-import { AutoSidebarPluginOptions } from '../types'
+import { AutoSidebarPluginOptions, VuePressVersion } from '../types'
 
 export const AutoSidebarOptionsDefault: AutoSidebarPluginOptions = {
+  version: VuePressVersion.V1, // 默认为 vuepress v1
+  // 输出
+  output: {
+    filename: 'sidebar'
+  },
   // 排序
   sort: {
     mode: 'asc', // 排序模式
