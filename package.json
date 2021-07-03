@@ -1,9 +1,10 @@
 {
   "private": true,
   "version": "1.0.0",
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": ["packages/*"],
+    "nohoist": ["**/vuepress", "**/vuepress/**"]
+  },
   "author": "shanyuhai123",
   "license": "MIT",
   "repository": {
