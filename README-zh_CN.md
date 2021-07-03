@@ -21,6 +21,10 @@ npm i vuepress-plugin-auto-sidebar -D
 
 
 
+> 现在，它已经支持 VuePress V2 了。
+>
+> Now, it is support VuePress V2.
+
 ## 使用（Usage）
 
 > **注意，请勿将 plugins 放在 themeConfig 中**，如何[使用插件](https://vuepress.vuejs.org/zh/plugin/using-a-plugin.html)。
@@ -35,12 +39,30 @@ module.exports = {
 
 :book: **更详细的文档见 [vuepress-plugin-auto-sidebar](https://shanyuhai123.github.io/vuepress-plugin-auto-sidebar)。**
 
+### 1. 引入
 
+> 令人遗憾的事。
 
-### 1. 简单的导航栏
+在 [VuePress v1](https://v1.vuepress.vuejs.org/zh/) 中以上就可以快速帮你启用该插件了，但由于 [VuePress v2](https://v2.vuepress.vuejs.org/zh/) 尚未提供对应的能力，所以你需要自行引入生成的 `sidebar.js` 文件。
+
+```js
+const sidebarConf = require('./sidebar')
+
+module.exports = {
+  plugins: [
+    ["vuepress-plugin-auto-sidebar", {}]
+  ],
+  themeConfig: {
+    sidebar: sidebarConf
+  }
+}
+```
+
+### 2. 简单的导航栏
 
 我们扩展了 `vuepress cli` 来帮助你快速生成简单的导航栏，[如何使用它](https://shanyuhai123.github.io/vuepress-plugin-auto-sidebar/zh/features/plugin-options.html#nav-%E5%AF%BC%E8%88%AA%E6%A0%8F)：
 
 ```bash
+# v2 不支持
 vuepress nav docs
 ```

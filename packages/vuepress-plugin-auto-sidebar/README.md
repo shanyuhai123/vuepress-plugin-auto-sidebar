@@ -39,9 +39,11 @@ module.exports = {
 
 ### 1. 引入（Require）
 
-In VuePress V1 the above can quickly help you enable the plugin, but since VuePress V2 does not yet provide the corresponding capabilities, you need to introduce the generated `sidebar.js` file yourself.
+> 令人遗憾的事。
 
-在 VuePress V1 中以上就可以快速帮你启用该插件了，但由于 VuePress V2 尚未提供对应的能力，所以你需要自行引入生成的 `sidebar.js` 文件：
+在 [VuePress v1](https://v1.vuepress.vuejs.org/zh/) 中以上就可以快速帮你启用该插件了，但由于 [VuePress v2](https://v2.vuepress.vuejs.org/zh/) 尚未提供对应的能力，所以你需要自行引入生成的 `sidebar.js` 文件。
+
+In [VuePress v1](https://v1.vuepress.vuejs.org/) the above can quickly help you enable the plugin, but since [VuePress v2](https://v2.vuepress.vuejs.org/) does not yet provide the corresponding capabilities, you need to introduce the generated `sidebar.js` file yourself.
 
 ```js
 const sidebarConf = require('./sidebar')
@@ -63,7 +65,7 @@ module.exports = {
 We have extended `vuepress cli` to help you quickly generate a simple navigation bar, [how to use it](https://shanyuhai123.github.io/vuepress-plugin-auto-sidebar/features/plugin-options.html#nav):
 
 ```bash
-# V2 not support
+# v2 not support
 vuepress nav docs
 ```
 
