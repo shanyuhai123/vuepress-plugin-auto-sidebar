@@ -27,11 +27,11 @@ npm i vuepress-plugin-auto-sidebar -D
 
 ```js
 module.exports = {
-  plugins: {
-    "vuepress-plugin-auto-sidebar": {
+  plugins: [
+    ["vuepress-plugin-auto-sidebar", {
       // options
-    }
-  }
+    }]
+  ]
 }
 ```
 

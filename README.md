@@ -34,9 +34,9 @@ npm i vuepress-plugin-auto-sidebar@alpha -D
 
 ```js
 module.exports = {
-  plugins: {
-    "vuepress-plugin-auto-sidebar": {}
-  }
+  plugins: [
+    ["vuepress-plugin-auto-sidebar", {}]
+  ]
 }
 ```
 
