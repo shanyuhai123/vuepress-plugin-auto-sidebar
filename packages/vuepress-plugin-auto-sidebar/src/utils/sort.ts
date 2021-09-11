@@ -126,7 +126,15 @@ export const specifiedPagesSort = (defaultPagesGroupByMenuPath: GroupPagesResult
 // 为了避免被上级覆盖需要对 sidebar 进行排序
 export const pagesGroupSort = (defaultPagesGroupByMenuPath: GroupPagesResult) =>
   Object.keys(defaultPagesGroupByMenuPath)
-    .sort((groupA, groupB) => groupA.length > groupB.length ? -1 : 1)
+    .sort((groupA, groupB) => {
+      const arrA = groupA.split('/')
+      const arrB = groupB.split('/')
+      if (arrA.length !== arrB.length) {
+        return arrA.length > arrB.length ? -1 : 1
+      } else {
+        return groupA > groupB ? 1 : -1
+      }
+    })
     .reduce((acc: GroupPagesResult, group) => {
       acc[group] = defaultPagesGroupByMenuPath[group]
 

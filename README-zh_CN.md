@@ -18,21 +18,16 @@
 ```bash
 npm i vuepress-plugin-auto-sidebar -D
 
-# v2 alpha(测试版)
+# v2 alpha(测试版，适用于 v2)
 npm i vuepress-plugin-auto-sidebar@alpha -D
 ```
 
 
 
-> 现在，它已经支持 VuePress V2 了。
->
-> Now, it is support VuePress V2.
-
 ## 使用（Usage）
 
-> **注意，请勿将 plugins 放在 themeConfig 中**，如何[使用插件](https://vuepress.vuejs.org/zh/plugin/using-a-plugin.html)。
-
 ```js
+// 在 .vuepress/config.js 中配置插件
 module.exports = {
   plugins: [
     ["vuepress-plugin-auto-sidebar", {}]

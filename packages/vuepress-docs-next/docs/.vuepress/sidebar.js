@@ -97,17 +97,6 @@ module.exports = {
       ]
     }
   ],
-  "/menu3/menu3-2/": [
-    {
-      "text": "Menu3 2",
-      "title": "Menu3 2",
-      "collapsable": true,
-      "sidebarDepth": 1,
-      "children": [
-        "README.md"
-      ]
-    }
-  ],
   "/menu3/menu3-1/": [
     {
       "text": "Menu3 1",
@@ -117,6 +106,17 @@ module.exports = {
       "children": [
         "README.md",
         "ignore-item-1.md"
+      ]
+    }
+  ],
+  "/menu3/menu3-2/": [
+    {
+      "text": "Menu3 2",
+      "title": "Menu3 2",
+      "collapsable": true,
+      "sidebarDepth": 1,
+      "children": [
+        "README.md"
       ]
     }
   ],
