@@ -27,7 +27,10 @@ module.exports = {
           menu: "/menu3/menu3-3/",
           regex: "ignore-*"
         }
-      ]
+      ],
+      git: {
+        ignoreUntracked: true,
+      }
     }]
   ],
   themeConfig: {
