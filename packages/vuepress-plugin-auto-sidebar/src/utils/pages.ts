@@ -1,10 +1,10 @@
 import * as colors from 'colors'
-import { AutoSidebarPage, GroupPagesResult, IgnoreOptions } from '../types'
+import { AutoSidebarPage, AutoSidebarPluginOptions, GroupPagesResult, IgnoreOptions } from '../types'
 import { filterRootMarkdowns, getMenuPath } from './path'
 
 // 从 pages 中提取部分参数
 // 并过滤掉异常 page（非 markdown 生成的）
-export const handlePages = (pages: AutoSidebarPage[]): AutoSidebarPage[] =>
+export const handlePages = (pages: AutoSidebarPage[], options: AutoSidebarPluginOptions): AutoSidebarPage[] =>
   pages
     .filter(page => page.relativePath)
     .map((page) => ({
@@ -17,6 +17,13 @@ export const handlePages = (pages: AutoSidebarPage[]): AutoSidebarPage[] =>
     }))
     .filter(filterRootMarkdowns)
     .filter((page) => !page.frontmatter.autoIgnore)
+    .filter((page) => {
+      if (options.git.ignoreUntracked) {
+        return page.createdTime !== undefined
+      } else {
+        return true
+      }
+    })
 
 export const handleIgnorePages = (groupPages: GroupPagesResult, ignoreOptions: IgnoreOptions) => {
   ignoreOptions.forEach(({ menu, regex }) => {

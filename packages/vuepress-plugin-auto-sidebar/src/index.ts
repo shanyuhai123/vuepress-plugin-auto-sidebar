@@ -51,12 +51,25 @@ const AutoSidebarPlugin = (
         content: `export default ({ siteData, options }) => { siteData.themeConfig.sidebar = ${JSON.stringify(AUTO_SIDEBAR_DATA)} }`
       }
     },
+    // v1
     async extendPageData (page: AutoSidebarPage) {
       if (page.relativePath) {
         const filepath = join(ctx.sourceDir, page.relativePath)
 
         if (isGitValid) {
           const createdTime = await getGitCreatedTime(filepath)
+
+          if (!isNaN(createdTime)) {
+            page.createdTime = createdTime
+          }
+        }
+      }
+    },
+    // v2
+    async extendsPageData (page: AutoSidebarPage) {
+      if (page.filePath) {
+        if (isGitValid) {
+          const createdTime = await getGitCreatedTime(page.filePath)
 
           if (!isNaN(createdTime)) {
             page.createdTime = createdTime

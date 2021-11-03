@@ -24,5 +24,8 @@ export const AutoSidebarOptionsDefault: AutoSidebarPluginOptions = {
     collapseList: [], // 折叠列表
     uncollapseList: [] // 不折叠列表
   },
-  ignore: []
+  ignore: [],
+  git: {
+    ignoreUntracked: false // 是否忽略未跟踪的文件
+  }
 }

@@ -17,6 +17,7 @@ interface AutoSidebarPageFrontmatter {
 
 export interface AutoSidebarPage extends Partial<Page> {
   relativePath: string
+  filePath?: string // v2
   menuPath: string
   frontmatter: PageFrontmatter & AutoSidebarPageFrontmatter
   date: string
@@ -74,6 +75,10 @@ interface OutputOptions {
   filename: string
 }
 
+interface GitOptions {
+  ignoreUntracked: boolean
+}
+
 export interface AutoSidebarPluginOptions {
   version: VuePressVersion
   output: OutputOptions
@@ -81,7 +86,8 @@ export interface AutoSidebarPluginOptions {
   title: TitleOptions
   sidebarDepth: number
   collapse: CollapseOptions
-  ignore: IgnoreOptions,
+  ignore: IgnoreOptions
+  git: GitOptions
 }
 
 export interface GroupPagesResult {

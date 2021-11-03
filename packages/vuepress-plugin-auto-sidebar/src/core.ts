@@ -5,7 +5,7 @@ import { pagesGroupSort, pagesSort, specifiedPagesSort } from './utils/sort'
 
 const readyOrPreparedPages = (pages: AutoSidebarPage[], options: AutoSidebarPluginOptions) => {
   // 核心是对 pages 进行整理
-  const collatedPages = handlePages(pages)
+  const collatedPages = handlePages(pages, options)
 
   // 获取指定排序的 pages
   const { specifiedSortPages, defaultPages } = distinguishSpecifiedSortPages(collatedPages)
