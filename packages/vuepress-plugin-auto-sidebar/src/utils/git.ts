@@ -23,3 +23,15 @@ export const getGitCreatedTime = async (filepath: string) => {
 
   return Number.parseInt(stdout, 10) * 1000
 }
+
+export const isGitIndex = async (filepath: string) => {
+  const { stdout } = await execa(
+    'git',
+    ['ls-files', '--', basename(filepath)],
+    {
+      cwd: dirname(filepath)
+    }
+  )
+
+  return stdout.trim() === basename(filepath)
+}

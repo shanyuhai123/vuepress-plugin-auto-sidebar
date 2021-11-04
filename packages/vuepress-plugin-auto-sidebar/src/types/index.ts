@@ -23,6 +23,7 @@ export interface AutoSidebarPage extends Partial<Page> {
   date: string
   filename: string
   createdTime: number
+  gitStatus?: 'add' | 'commit' // v2
 }
 
 type SIDEBAR_OPTIONS_SORT =
@@ -76,7 +77,7 @@ interface OutputOptions {
 }
 
 interface GitOptions {
-  ignoreUntracked: boolean
+  trackStatus: 'all' | 'add' | 'commit'
 }
 
 export interface AutoSidebarPluginOptions {

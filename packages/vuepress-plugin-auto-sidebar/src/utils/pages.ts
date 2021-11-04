@@ -13,13 +13,16 @@ export const handlePages = (pages: AutoSidebarPage[], options: AutoSidebarPlugin
       frontmatter: page.frontmatter,
       date: page.date,
       createdTime: page.createdTime,
+      gitStatus: page.gitStatus,
       filename: page.filename
     }))
     .filter(filterRootMarkdowns)
     .filter((page) => !page.frontmatter.autoIgnore)
     .filter((page) => {
-      if (options.git.ignoreUntracked) {
-        return page.createdTime !== undefined
+      if (options.git.trackStatus === 'add') {
+        return page.gitStatus === 'add' || page.gitStatus === 'commit'
+      } else if (options.git.trackStatus === 'commit') {
+        return page.gitStatus === 'commit'
       } else {
         return true
       }

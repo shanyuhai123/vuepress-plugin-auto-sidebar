@@ -7,7 +7,7 @@ import readyOrPreparedPages from './core'
 import { AutoSidebarOptionsDefault } from './config/options'
 import { AutoSidebarPage, AutoSidebarPluginOptions, VuePressVersion } from './types'
 import { genNav } from './utils/nav'
-import { checkGit, getGitCreatedTime } from './utils/git'
+import { checkGit, getGitCreatedTime, isGitIndex } from './utils/git'
 
 const AutoSidebarPlugin = (
   options: AutoSidebarPluginOptions,
@@ -70,9 +70,15 @@ const AutoSidebarPlugin = (
       if (page.filePath) {
         if (isGitValid) {
           const createdTime = await getGitCreatedTime(page.filePath)
+          const gitIndex = await isGitIndex(page.filePath)
+
+          if (gitIndex) {
+            page.gitStatus = 'add'
+          }
 
           if (!isNaN(createdTime)) {
             page.createdTime = createdTime
+            page.gitStatus = 'commit'
           }
         }
       }

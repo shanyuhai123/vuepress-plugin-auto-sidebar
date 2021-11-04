@@ -26,6 +26,6 @@ export const AutoSidebarOptionsDefault: AutoSidebarPluginOptions = {
   },
   ignore: [],
   git: {
-    ignoreUntracked: false // 是否忽略未跟踪的文件
+    trackStatus: 'all' // 是否忽略未跟踪的文件
   }
 }
