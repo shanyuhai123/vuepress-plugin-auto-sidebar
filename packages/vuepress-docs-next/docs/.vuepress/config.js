@@ -29,7 +29,7 @@ module.exports = {
         }
       ],
       git: {
-        ignoreUntracked: true,
+        // trackStatus: 'commit',
       }
     }]
   ],
