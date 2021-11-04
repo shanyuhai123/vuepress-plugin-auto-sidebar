@@ -1,4 +1,24 @@
+require('dotenv').config()
 
+const genGoogleAnalytics = () => [
+  [
+    'script',
+    {
+      async: true,
+      src: `https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_GA}`
+    }
+  ],
+  [
+    'script',
+    {},
+    `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '${process.env.GOOGLE_GA}');
+    `
+  ]
+]
 
 module.exports = {
   title: 'vuepress 自动生成侧边栏',
@@ -6,8 +26,9 @@ module.exports = {
   base: "/vuepress-plugin-auto-sidebar/",
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
-    ['meta', { name: 'keywords', content: 'vuepress,vuepress bar,vuepress sidebar,vuepress auto sidebar,vuepress 侧边栏,vuepress 自动生成侧边栏'}],
-    ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1'}]
+    ['meta', { name: 'keywords', content: 'vuepress,vuepress bar,vuepress sidebar,vuepress auto sidebar,vuepress 侧边栏,vuepress 自动生成侧边栏' }],
+    ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1' }],
+    ...genGoogleAnalytics()
   ],
   locales: {
     '/': {
@@ -21,24 +42,21 @@ module.exports = {
       description: '这是一个为 Vuepress 自动生成侧边栏的插件'
     }
   },
-  plugins: {
-    "vuepress-plugin-auto-sidebar": {
+  plugins: [
+    ["vuepress-plugin-auto-sidebar", {
       title: {
         mode: "titlecase",
       },
       sidebarDepth: 2
-    },
-    "@vuepress/last-updated": {
+    }],
+    ["@vuepress/last-updated", {
       transformer: (timestamp, lang) => {
         const moment = require('moment');
         moment.locale(lang)
         return moment(timestamp).format('LLLL')
       }
-    },
-    "@vuepress/google-analytics": {
-      ga: "UA-134613928-2"
-    }
-  },
+    }]
+  ],
   themeConfig: {
     lastUpdated: '上次更新',
     repo: 'shanyuhai123/vuepress-plugin-auto-sidebar',
