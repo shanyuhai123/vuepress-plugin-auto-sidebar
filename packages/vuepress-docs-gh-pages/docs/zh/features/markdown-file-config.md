@@ -7,8 +7,6 @@ autoPrev: plugin-options
 
 为了避免与其他 [Front Matter](https://vuepress.vuejs.org/zh/guide/frontmatter.html#front-matter) 存在命名冲突，所以在以下部分 Front Matter 以 `auto` 开头。
 
-
-
 ## autoPrev/autoNext
 
 更精准的排序需要在文件中添加 `autoPrev` 或 `autoNext` 并指定同**目录下**的文件名。
@@ -30,8 +28,6 @@ autoNext: other-filename
 ```
 
 注意，指向不存在的文件名时会导致当前文件不显示在侧边栏，并会在命令行提示 “xxx 文件指向了不存在的文件”。
-
-
 
 ## autoSort
 
@@ -59,8 +55,6 @@ autoSort: 1
 > }
 > ```
 
-
-
 ## sidebarDepth
 
 markdown 文件内的 `sidebarDepth` 会覆盖全局设置：
@@ -71,8 +65,6 @@ sidebarDepth: 2
 ---
 ```
 
-
-
 ## autoIgnore
 
 当你有文件不想显示在侧边栏时：
@@ -82,8 +74,6 @@ sidebarDepth: 2
 autoIgnore: true
 ---
 ```
-
-
 
 ## 多个分组
 

@@ -9,15 +9,11 @@ sidebar: auto
 
 如果你只是写一个简单介绍页，那没必要使用它，但如果你希望用 vuepress 记录很多的东西，例如：[飞跃高山与大洋的鱼的笔记](https://docs.shanyuhai.top/)，那你可以试一试这个插件。
 
-
-
 ## 安装
 
 ```bash
 npm i vuepress-plugin-auto-sidebar -D
 ```
-
-
 
 ## 使用
 
@@ -34,8 +30,6 @@ module.exports = {
 ```
 
 更多的[插件选项](/zh/features/plugin-options.html)。
-
-
 
 ### 1. 简单的导航栏
 

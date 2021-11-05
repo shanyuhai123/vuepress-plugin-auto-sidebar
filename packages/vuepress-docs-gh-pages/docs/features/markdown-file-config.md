@@ -5,9 +5,7 @@ autoPrev: plugin-options
 
 ## Overview
 
-In order to avoid confict with other [Front Matter](https://vuepress.vuejs.org/guide/frontmatter.html#alternative-frontmatter-formats), some of the following Front Matter will start with `auto`.
-
-
+In order to avoid conflict with other [Front Matter](https://vuepress.vuejs.org/guide/frontmatter.html#alternative-frontmatter-formats), some of the following Front Matter will start with `auto`.
 
 ## autoPrev/autoNext
 
@@ -28,8 +26,6 @@ autoNext: other-filename
 ```
 
 If it points to a file that does not exist, it will not be displayed in the sidebar, and throws "your filename 指向了不存在的文件".
-
-
 
 ## autoSort
 
@@ -57,8 +53,6 @@ autoSort: 1
 > }
 > ```
 
-
-
 ## sidebarDepth
 
 A page can also override this value via `YAML front matter`:
@@ -69,8 +63,6 @@ sidebarDepth: 2
 ---
 ```
 
-
-
 ## autoIgnore
 
 If you want some markdown  file do not display in the sidebar:
@@ -80,8 +72,6 @@ If you want some markdown  file do not display in the sidebar:
 autoIgnore: true
 ---
 ```
-
-
 
 ## more groups
 
@@ -94,7 +84,7 @@ autoGroup-2: 数组方法
 ---
 ```
 
-Among them, `-` and `+` choose one. `-` means below the default group, `+` means above the default group, and the number behind the symbol determines the order. 
+Among them, `-` and `+` choose one. `-` means below the default group, `+` means above the default group, and the number behind the symbol determines the order.
 
 Here is a example:
 
@@ -105,4 +95,3 @@ Here is a example:
 效果展示：
 
 <img :src="$withBase('/assets/group-config-effect.png')" alt="分组效果">
-

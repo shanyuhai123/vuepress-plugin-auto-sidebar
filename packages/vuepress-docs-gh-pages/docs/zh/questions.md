@@ -7,13 +7,9 @@ sidebar: auto
 
 如果一下的回答无法解决你的问题，可以给我提一个 [Issue](https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar/issues/new)。
 
-
-
 ## 1. 它真的可以自动生成侧边栏吗？
 
 很抱歉，我的初衷是这样的，但每个人的需求大不相同，只能尽可能的去平衡选择 :crying_cat_face:。
-
-
 
 ## 2. 为什么页面显示 404？
 
@@ -26,8 +22,6 @@ sidebar: auto
 | `/config.md`       | `/config.html` |
 
 所以当你访问 `/guide/` 而 404 时是由于缺乏了它对应的 `README.md` 文件。
-
-
 
 ## 3. 为什么侧边栏显示的是文件路径，而非文件名？
 
@@ -47,4 +41,3 @@ sidebar: auto
    # 一级标题
    ## 二级标题
    ```
-

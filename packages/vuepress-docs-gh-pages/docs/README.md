@@ -11,15 +11,11 @@ If you just write a simple page, just use the native [sidebar](https://vuepress.
 
 > Due to my poor English, when you confused about the documentation, you can create an [issue](https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar/issues).
 
-
-
 ## Install
 
 ```bash
 npm i vuepress-plugin-auto-sidebar -D
 ```
-
-
 
 ## Usage
 
@@ -36,8 +32,6 @@ module.exports = {
 ```
 
 You can see more [plugin options](/features/plugin-options.html).
-
-
 
 ### 1. Simple Navbar
 

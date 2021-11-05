@@ -30,8 +30,6 @@ module.exports = {
 }
 ```
 
-
-
 ## sort
 
 ### 1. built-in rules
@@ -89,8 +87,6 @@ Above the sort rules, you also want `some-filename` sort before or after `other-
 
 More friendly than [built-in rules](/features/plugin-options.html#_1-built-in-rules) and simpler than [precise sort](/features/plugin-options.html#_3-precise-sort), you can use [autoSort](/features/markdown-file-config.html#autosort) in the markdown file.
 
-
-
 ## title
 
 We always use `kebabcase` for the filename, but `titlecase` is more friendly to display on the page.
@@ -99,7 +95,7 @@ We always use `kebabcase` for the filename, but `titlecase` is more friendly to 
 
 ```js
 module.exports = {
-	plugins: {
+ plugins: {
     "vuepress-plugin-auto-sidebar": {
       title: {
         // more options: 
@@ -131,7 +127,7 @@ docs
 
 And you choose the `titlecase`,you will get:
 
-```
+```text
 exampleSubMenu1-a => Example Sub Menu1 A
 exampleSubMenu1-b => Example Sub Menu1 B
 exampleSubMenu1-c => Example Sub Menu1 C
@@ -160,14 +156,12 @@ module.exports = {
 
 And you will get:
 
-```
+```text
 exampleSubMenu1-a => 🎉 Hello Vuepress 🎉
 exampleSubMenu1-b => Example Sub Menu1 B
 exampleSubMenu1-c => 🎉 Auto Sidebar 🎉
 exampleMenu2 => Example Menu2
 ```
-
-
 
 ## sidebarDepth
 
@@ -184,8 +178,6 @@ module.exports = {
 ```
 
 If you want override for the specified markdown file, you can also use the [sidebarDepth](/features/markdown-file-config.html#sidebardepth).
-
-
 
 ## collapse
 
@@ -236,8 +228,6 @@ module.exports = {
 }
 ```
 
-
-
 ## ignore
 
 If you do not want part of markdown files display on the sidebar:
@@ -260,8 +250,6 @@ module.exports = {
 ```
 
 If you just ignore some file, you can use the [autoIgnore](/features/markdown-file-config.html#autoignore) in the markdown file.
-
-
 
 ## nav
 
@@ -299,4 +287,3 @@ This plugin also provides a way to generate nav.
      }
    }
    ```
-

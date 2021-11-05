@@ -31,8 +31,6 @@ module.exports = {
 }
 ```
 
-
-
 ## sort（排序）
 
 ### 1. 内置的规则
@@ -90,8 +88,6 @@ module.exports = {
 
 比**规则排序**更友好，比**精准排序**更简单，在 markdown 文件中添加 [autoSort](/zh/features/markdown-file-config.html#autosort)。
 
-
-
 ## title（标题）
 
 我们经常会使用短横线命名文件，而作为标题它就显得有些糟糕了。
@@ -102,7 +98,7 @@ module.exports = {
 
 ```js
 module.exports = {
-	plugins: {
+ plugins: {
     "vuepress-plugin-auto-sidebar": {
       title: {
         // 更多选项: 
@@ -134,7 +130,7 @@ docs
 
 And you choose the `titlecase`,you will get:
 
-```
+```text
 exampleSubMenu1-a => Example Sub Menu1 A
 exampleSubMenu1-b => Example Sub Menu1 B
 exampleSubMenu1-c => Example Sub Menu1 C
@@ -163,14 +159,12 @@ module.exports = {
 
 结果：
 
-```
+```text
 exampleSubMenu1-a => 🎉 Hello Vuepress 🎉
 exampleSubMenu1-b => Example Sub Menu1 B
 exampleSubMenu1-c => 🎉 Auto Sidebar 🎉
 exampleMenu2 => Example Menu2
 ```
-
-
 
 ## sidebarDepth（标题深度）
 
@@ -187,8 +181,6 @@ module.exports = {
 ```
 
 如果你想要修改指定文件的标题显示，可以修改文件内 [sidebarDepth](/zh/features/markdown-file-config.html#sidebardepth)。
-
-
 
 ## collapse（折叠）
 
@@ -239,8 +231,6 @@ module.exports = {
 }
 ```
 
-
-
 ## ignore（忽略）
 
 如果你有部分文件想要从侧边栏中隐藏，删掉文件又不肯能：
@@ -264,8 +254,6 @@ module.exports = {
 
 如果你想隐藏单个文件，那么可在文件中添加 [autoIgnore](/zh/features/markdown-file-config.html#autoignore)。
 
-
-
 ## nav（导航栏）
 
 为了简化你第一次搬迁博客、笔记的成本，它仅仅提供了一个简单的生成导航栏的方式。
@@ -279,15 +267,15 @@ module.exports = {
      }
    }
    ```
-   
+
 2. 执行命令
 
    ```bash
    npm run docs:nav
    ```
-   
+
    它将会在 `.vuepress` 文件夹下生成 `nav.js` 文件。
-   
+
 3. 引入生成的 nav 文件
 
    ```js
@@ -302,6 +290,3 @@ module.exports = {
      }
    }
    ```
-
-
-
