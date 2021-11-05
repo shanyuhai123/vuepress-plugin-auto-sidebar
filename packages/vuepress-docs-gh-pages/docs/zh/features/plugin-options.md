@@ -25,7 +25,10 @@ module.exports = {
         collapseList: [],
         uncollapseList: []
       },
-      ignore: []
+      ignore: [],
+      git: {
+        trackStatus: 'all'
+      }
     }
   }
 }
@@ -290,3 +293,29 @@ module.exports = {
      }
    }
    ```
+
+## git（追踪）
+
+> 从 `2.4.0-alpha.4` 开始支持
+
+VuePress v2 不再支持动态修改 sidebar，需要手动配置，但有些内容只是打个草稿，不希望直接提交到 Github 上。  
+于是产生了这么个折中方案：
+
+```js
+const sidebarConf = require('./sidebar')
+
+module.exports = {
+  plugins: [
+    ["vuepress-plugin-auto-sidebar", {
+      git: {
+        // `add` 表示跟踪执行了 `git add` 的文件，`commit` 表示跟踪执行了 `git commit` 的文件
+        // 不填写或填写其他则跟踪所有状态
+        trackStatus: 'add'
+      }
+    }]
+  ],
+  themeConfig: {
+    sidebar: sidebarConf
+  }
+}
+```

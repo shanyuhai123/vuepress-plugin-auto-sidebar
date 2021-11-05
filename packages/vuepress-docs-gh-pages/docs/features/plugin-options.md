@@ -24,7 +24,10 @@ module.exports = {
         collapseList: [],
         uncollapseList: []
       },
-      ignore: []
+      ignore: [],
+      git: {
+        trackStatus: 'all'
+      }
     }
   }
 }
@@ -287,3 +290,29 @@ This plugin also provides a way to generate nav.
      }
    }
    ```
+
+## git
+
+> Support from `2.4.0-alpha.4` onwards
+
+VuePress v2 no longer supports dynamic modification of sidebar, you need to configure it manually, but some content is just a draft, do not want to submit directly to Github.  
+So here's a compromise:
+
+```js
+const sidebarConf = require('./sidebar')
+
+module.exports = {
+  plugins: [
+    ["vuepress-plugin-auto-sidebar", {
+      git: {
+        // `add` means that files with `git add` are tracked
+        // `commit` means that files with `git commit` are tracked
+        trackStatus: 'add' // or 'commit'
+      }
+    }]
+  ],
+  themeConfig: {
+    sidebar: sidebarConf
+  }
+}
+```
