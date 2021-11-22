@@ -57,10 +57,12 @@ module.exports = {
 }
 ```
 
-### 2. Simple Navbar
+## 其他（Others）
 
-We have extended `vuepress cli` to help you quickly generate a simple navigation bar, [how to use it](https://shanyuhai123.github.io/vuepress-plugin-auto-sidebar/features/plugin-options.html#nav):  
+### 1. Simple Navbar
+
 我们扩展了 `vuepress cli` 来帮助你快速生成简单的导航栏，[如何使用它](https://shanyuhai123.github.io/vuepress-plugin-auto-sidebar/zh/features/plugin-options.html#nav-%E5%AF%BC%E8%88%AA%E6%A0%8F)：
+We have extended `vuepress cli` to help you quickly generate a simple navigation bar, [how to use it](https://shanyuhai123.github.io/vuepress-plugin-auto-sidebar/features/plugin-options.html#nav):  
 
 ```bash
 # vuepress v2 not support
