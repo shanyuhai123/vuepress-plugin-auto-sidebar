@@ -12,7 +12,8 @@ module.exports = {
         mode: "titlecase",
         map: {
           "/menu1/menu1-2/": "修改个标题",
-          "/menu2/menu2-2/": "中间分组"
+          "/menu2/menu2-2/": "中间分组",
+          "/menu1/menu1-1/": "分组666",
         }
       },
       sidebarDepth: 1,
@@ -26,7 +27,8 @@ module.exports = {
           menu: "/menu3/menu3-3/",
           regex: "ignore-*"
         }
-      ]
+      ],
+      removeEmptyGroup: true
     }
   },
   themeConfig: {

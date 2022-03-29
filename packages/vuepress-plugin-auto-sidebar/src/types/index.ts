@@ -88,6 +88,7 @@ export interface AutoSidebarPluginOptions {
   sidebarDepth: number
   collapse: CollapseOptions
   ignore: IgnoreOptions
+  removeEmptyGroup: Boolean
   git: GitOptions
 }
 

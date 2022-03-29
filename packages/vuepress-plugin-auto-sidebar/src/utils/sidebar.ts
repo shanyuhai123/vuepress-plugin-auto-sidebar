@@ -164,5 +164,13 @@ export const genSidebar = (sortedGroupPages: GroupPagesResult, options: AutoSide
         ...below.map(b => genGroup(b.groupName, b.children, collapsable, options.sidebarDepth))
       ]
 
+      if (options.removeEmptyGroup) {
+        acc[group].forEach((g, idx) => {
+          if (g.children.length === 0) {
+            acc[group].splice(idx, 1)
+          }
+        })
+      }
+
       return acc
     }, {})

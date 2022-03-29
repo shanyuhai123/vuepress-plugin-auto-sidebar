@@ -25,6 +25,8 @@ export const AutoSidebarOptionsDefault: AutoSidebarPluginOptions = {
     uncollapseList: [] // 不折叠列表
   },
   ignore: [],
+  // 移除空分组
+  removeEmptyGroup: false,
   git: {
     trackStatus: 'all' // 是否忽略未跟踪的文件
   }
