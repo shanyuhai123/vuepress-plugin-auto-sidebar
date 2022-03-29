@@ -26,6 +26,7 @@ module.exports = {
         uncollapseList: []
       },
       ignore: [],
+      removeEmptyGroup: false,
       git: {
         trackStatus: 'all'
       }
@@ -256,6 +257,20 @@ module.exports = {
 ```
 
 如果你想隐藏单个文件，那么可在文件中添加 [autoIgnore](/zh/features/markdown-file-config.html#autoignore)。
+
+## removeEmptyGroup（隐藏空分组）
+
+当你将文件夹中所有文件都配置了 [autoGroup](/zh/features/markdown-file-config.html#多个分组) 时，会导致默认分组为空，想隐藏它时可使用：
+
+```js
+module.exports = {
+  plugins: [
+    "vuepress-plugin-auto-sidebar": {
+      removeEmptyGroup: true
+    }
+  ]
+}
+```
 
 ## nav（导航栏）
 

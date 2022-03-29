@@ -254,6 +254,20 @@ module.exports = {
 
 If you just ignore some file, you can use the [autoIgnore](/features/markdown-file-config.html#autoignore) in the markdown file.
 
+## removeEmptyGroup
+
+When you configure all files in a folder with [autoGroup](/features/markdown-file-config.html#multiple-groups), it will cause the default group to be empty, and when you want to hide it you can use:
+
+```js
+module.exports = {
+  plugins: [
+    "vuepress-plugin-auto-sidebar": {
+      removeEmptyGroup: true
+    }
+  ]
+}
+```
+
 ## nav
 
 This plugin also provides a way to generate nav.
